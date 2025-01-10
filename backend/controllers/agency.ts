@@ -1,6 +1,7 @@
 import * as agencyService from '../services/agency'
 import { RequestHandler } from "express";
 import { agencySchema } from '../schemas/agency'
+import jwt from 'jsonwebtoken'
 
 export const getAgenciesList: RequestHandler = async (req, res) => {
    try {
@@ -80,14 +81,35 @@ export const updateAgencyData: RequestHandler = async (req, res) => {
 export const deleteAgency: RequestHandler = async (req, res) => {
    const { id } = req.params
 
-   try {
-      const agency = await agencyService.deleteAgency(parseInt(id))
+   let token = req.headers.authorization
+   let role = ''
 
-      res.status(200).json({ message: 'Agência removida do sistema.', agency })
-   } catch (err) {
-      console.error(err)
-      res.status(404).json({ error: 'Não foi possível remover a agência do sistema.' })
+   if (token) {
+      token = token.split(' ')[1]
+
+      // Verifica o token e tenta extrair a propriedade ROLE e ver se ele e ADMIN para tentar fazer a exclusão da Agência
+      jwt.verify(
+         token,
+         process.env.JWT_SECRET as string,
+         async (error, decoded: any) => {
+            if (error) return res.status(401).json({ error: 'Acesso negado' })
+
+            role = decoded.role
+         }
+      )
+
+      if (role === 'admin') {
+         try {
+            const agency = await agencyService.deleteAgency(parseInt(id))
+
+            res.status(200).json({ message: 'Agência removida do sistema.', agency })
+         } catch (err) {
+            console.error(err)
+            res.status(404).json({ error: 'Não foi possível remover a agência do sistema.' })
+         }
+      }
    }
 
-
+   // Se ROLE não por admin error um erro.
+   res.status(404).json({ error: 'Você não pode executar essa ação.' })
 }

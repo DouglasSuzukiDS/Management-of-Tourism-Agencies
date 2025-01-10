@@ -17,6 +17,7 @@ model Agency {
   id          Int    @id @default(autoincrement())
   name        String
   description String
+  // status      Boolean @default(false)
 }
 
 model User {

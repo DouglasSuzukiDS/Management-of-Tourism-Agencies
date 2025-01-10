@@ -2,6 +2,7 @@ import { RequestHandler } from "express";
 import * as userService from '../services/user'
 import { userSchema } from "../schemas/user";
 import { signUpSchema } from "../schemas/singUp";
+import jwt from 'jsonwebtoken'
 
 export const getUsers: RequestHandler = async (req, res) => {
    const userList = await userService.getUsers()
@@ -87,12 +88,35 @@ export const updateUser: RequestHandler = async (req, res) => {
 export const deleteUser: RequestHandler = async (req, res) => {
    const { id } = req.params
 
-   try {
-      const user = await userService.deleteUser(parseInt(id))
+   let token = req.headers.authorization
+   let role = ''
 
-      res.status(200).json({ message: 'Usuário removido do sistema.', user })
-   } catch (err) {
-      console.error(err)
-      res.status(404).json({ error: 'Usuário não encontrado.' })
+   if (token) {
+      token = token.split(' ')[1]
+
+      // Verifica o token e tenta extrair a propriedade ROLE e ver se ele e ADMIN para tentar fazer a exclusão da Agência
+      jwt.verify(
+         token,
+         process.env.JWT_SECRET as string,
+         async (error, decoded: any) => {
+            if (error) return res.status(401).json({ error: 'Acesso negado' })
+
+            role = decoded.role
+         }
+      )
+
+      if (role === 'admin') {
+         try {
+            const user = await userService.deleteUser(parseInt(id))
+
+            res.status(200).json({ message: 'Usuário removido do sistema.', user })
+         } catch (err) {
+            console.error(err)
+            res.status(404).json({ error: 'Usuário não encontrado.' })
+         }
+      }
    }
+
+   // Se ROLE não por admin error um erro.
+   res.status(404).json({ error: 'Você não pode executar essa ação.' })
 }
