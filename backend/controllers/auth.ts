@@ -1,15 +1,17 @@
 import { RequestHandler } from "express";
-import { signinSchema } from "../schemas/signinSchema";
+
 import { createJWT } from "../utils/jwt";
-import { compare, hash } from "bcrypt-ts";
-import { createUser, findUser } from "../services/user";
-import { signupSchema } from "../schemas/signupSchema";
+import { compare, hash } from "bcrypt";
+import { createUser, getUser } from "../services/user";
 import { prisma } from "../utils/prisma";
 import { Prisma } from "@prisma/client";
-import { SigninData } from "../types/signin";
+import { SignInSchema } from "../schemas/signIn";
 
-export const signup: RequestHandler = async (req, res) => {
-   const safeData = signupSchema.safeParse(req.body)
+import { signUpSchema } from "../schemas/singUp";
+import { SigninData } from "../types/signIn";
+
+export const signUp: RequestHandler = async (req, res) => {
+   const safeData = signUpSchema.safeParse(req.body)
    // Verifica o dados recebidos
    if (!safeData.success) {
       res.status(400).json({ error: safeData.error.flatten().fieldErrors })
@@ -32,8 +34,8 @@ export const signup: RequestHandler = async (req, res) => {
    }
 }
 
-export const signin: RequestHandler = async (req, res) => {
-   const safeData = signinSchema.safeParse(req.body)
+export const signIn: RequestHandler = async (req, res) => {
+   const safeData = SignInSchema.safeParse(req.body)
 
    // Faz a verificação dos dados do usuário
    if (!safeData.success) {
@@ -42,7 +44,7 @@ export const signin: RequestHandler = async (req, res) => {
    }
 
    // Verifica se o usuário existe
-   const user = await findUser(safeData.data.login)
+   const user = await getUser(safeData.data.login)
 
    if (!user) {
       res.status(404).json({ error: 'Login/Senha inválida' })
@@ -56,7 +58,7 @@ export const signin: RequestHandler = async (req, res) => {
       const userInfos: SigninData = {
          name: user.name,
          login: user.login,
-         isAdmin: user.isAdmin
+         role: user.role
       }
 
       // Cria o JWT

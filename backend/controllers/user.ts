@@ -1,11 +1,10 @@
 import { RequestHandler } from "express";
-import { userSchema } from "../schemas/userSchema";
-import { createUser, findUserById, findUserByLogin, getUsersList, removeUser, updateUser } from "../services/user";
-import { signupSchema } from "../schemas/signupSchema";
-import { createJWT } from "../utils/jwt";
+import * as userService from '../services/user'
+import { userSchema } from "../schemas/user";
+import { signUpSchema } from "../schemas/singUp";
 
 export const getUsers: RequestHandler = async (req, res) => {
-   const userList = await getUsersList()
+   const userList = await userService.getUsers()
 
    res.json({ users: userList })
 }
@@ -13,21 +12,30 @@ export const getUsers: RequestHandler = async (req, res) => {
 export const getUser: RequestHandler = async (req, res) => {
    const { login } = req.body
 
-   const user = await findUserByLogin(login)
+   const user = await userService.getUser(login)
 
-   res.json({ user })
+   res.status(200).json({ user })
 }
 
 export const getUserById: RequestHandler = async (req, res) => {
    const { id } = req.params
 
-   const user = await findUserById(parseInt(id))
+   try {
+      const user = await userService.getUserById(parseInt(id))
 
-   res.json({ user })
+      if (!user) {
+         res.status(404).json({ error: 'Usuário não encontrado' })
+      }
+
+      res.status(200).json({ message: 'Usuário localizado.', user })
+   } catch (err) {
+      console.error(err)
+      res.status(404).json({ error: 'Usuário não encontrado' })
+   }
 }
 
-export const addUser: RequestHandler = async (req, res) => {
-   const safeData = signupSchema.safeParse(req.body)
+export const createUser: RequestHandler = async (req, res) => {
+   const safeData = signUpSchema.safeParse(req.body)
    // Verifica o dados recebidos
    if (!safeData.success) {
       res.status(400).json({ error: safeData.error.flatten().fieldErrors })
@@ -36,21 +44,21 @@ export const addUser: RequestHandler = async (req, res) => {
 
    try {
       // Tenta criar o user
-      const user = await createUser(safeData.data)
+      const user = await userService.createUser(safeData.data)
 
       // Verifica se o user foi criado
       if (!user) res.status(400).json({ error: 'Não foi possível criar o usuário, tente mais tarde' })
 
       // Retorna os dados do usuário e o token de acesso
-      res.status(201).json({ user })
+      res.status(201).json({ message: 'Usuário criado.', user })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Login indisponível' })
+      res.status(404).json({ error: 'Login indisponível no momento.' })
       return
    }
 }
 
-export const updateUserData: RequestHandler = async (req, res) => {
+export const updateUser: RequestHandler = async (req, res) => {
    const { id } = req.params
 
    const safeData = userSchema.safeParse(req.body)
@@ -62,16 +70,16 @@ export const updateUserData: RequestHandler = async (req, res) => {
 
    try {
       // Tenta fazer a edição do user
-      const user = await updateUser(parseInt(id), safeData.data)
+      const user = await userService.updateUser(parseInt(id), safeData.data)
 
       // Verifica se o user foi editado
-      if (!user) res.status(400).json({ error: 'Não foi possível fazer a edição do usuário, tente mais tarde.' })
+      if (!user) res.status(400).json({ error: 'Não foi possível fazer a edição do usuário. Por favor, tente mais tarde.' })
 
       // Retorna os dados do usuário e o token de acesso
-      res.status(200).json({ user })
+      res.status(200).json({ message: 'Dados de usuários ediatados.', user })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Não foi possível fazer a edição do usuário, tente mais tarde.' })
+      res.status(404).json({ error: 'Não foi possível fazer a edição do usuário. Por favor, tente mais tarde.' })
       return
    }
 }
@@ -80,11 +88,11 @@ export const deleteUser: RequestHandler = async (req, res) => {
    const { id } = req.params
 
    try {
-      const user = await removeUser(parseInt(id))
+      const user = await userService.deleteUser(parseInt(id))
 
-      res.status(200).json({ user })
+      res.status(200).json({ message: 'Usuário removido do sistema.', user })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Usuário não encontrado' })
+      res.status(404).json({ error: 'Usuário não encontrado.' })
    }
 }
