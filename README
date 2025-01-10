@@ -1,0 +1,92 @@
+Olá, Como vai?,
+
+Agradecemos seu interesse em fazer parte da nossa equipe! Estamos entusiasmados com a possibilidade de trabalharmos juntos e gostaríamos de convidá-lo(a) para a próxima etapa do processo seletivo.
+
+**Sobre o Desafio**
+
+Para prosseguir com à vaga de Desenvolvedor(a) Full Stack, pedimos que complete o desafio abaixo. Ele foi elaborado para avaliar suas habilidades técnicas e a sua capacidade de desenvolver soluções que se alinhem às nossas necessidades.
+
+**Objetivo do Desafio**
+
+Desenvolver uma aplicação de G**estão de Agências de Turismo** que será composta por uma **API e um Frontend.**
+
+A API deverá ser desenvolvida em **NodeJS,  Docker, Express e o banco de dados MySQL.**
+
+Esperamos que você crie a API e siga as instruções funcionais e técnicas listadas abaixo.
+
+O frontend deverá ser desenvolvido em React ou Next e utilizar o Tailwind como biblioteca de estilização. Poderão ser utilizados recursos com Shadcn/ui.
+
+**Desafio: API e Frontend da PAYLINK**
+
+**1. API da PAYLINK com NodeJS (Express.js) + TypeScript**
+
+**Objetivo Específico**
+
+Desenvolver uma **API RESTful** para uma plataforma de **Gestão de Agências de Turismo** onde a agência de turismo poderá 
+
+**Requisitos Funcionais da API**
+
+- **Endpoints da API de gestão de agências de turismo: (Obrigatório)**
+    - Rotas ADMIN
+        - `GET /agency/:` Retorna uma lista de todas as agências.
+        - `POST /agency/:` Adiciona uma nova agência.
+        - `GET /agency/{id}/:` Exibe os detalhes de uma agência específica.
+        - `PUT /agency/{id}/:` Atualiza as informações de uma agência.
+        - `DELETE /agency/{id}/:` Remove uma agência do banco de dados (somente para administradores).
+    - Rotas Publicas
+        - `POST /register/:` Crie um novo analista ou adminstrador.
+        - `POST/login/:` Faz o login de um analista ou adminstrador
+- **Filtragem e Pesquisa: (Diferencial)**
+    - **Filtragem por status:** Permitir filtrar candidatos via query parameters, por exemplo: /agencia/?status=aprovado.
+    - **Busca por nome ou habilidades:** Implementar busca de candidatos por nome ou habilidades específicas, utilizando query parameters, por exemplo: /agencia/?search=Lucas%LTDA.
+- **Autenticação e Autorização: (Obrigatório)**
+    - Implementar autenticação com **JWT** (JSON Web Token).
+    - Apenas usuários autenticados podem acessar rotas protegidas.
+    - Somente administradores têm permissão para excluir candidatos.
+- **Documentação da API: (Diferencial)**
+    - Gerar a documentação da API utilizando Swagger ou Redoc.
+
+**2. Frontend em React.js**
+
+**Objetivo Específico**
+
+Desenvolver uma interface amigável e responsiva em React.js para interação com a API **gestão de agências de turismo**. A aplicação deve permitir que o Analista/administrador registre, visualize, filtre, busque, edite e exclua agências conforme permitido.
+
+**Requisitos Funcionais do Frontend**
+
+- Tela de Registro
+    - Formulário de registro de usuários
+    - A tela de registro deve conter os campos e-mail, senha e cargo
+    - Redirecionar para a tela de login ao finalizar o cadastro.
+- **Tela de Login:**
+    - Formulário de login com autenticação via JWT.
+    - As credenciais serão aquelas definidas no momento do cadastro
+    - Redirecionamento para a tela de lista de agencias após login bem-sucedido.
+- **Tela de Lista de Agências:**
+    - Exibir uma lista de agências cadastradas, mostrando informações básicas como nome fantasia, cnpj, inscrição estadual, status e data de fundação .
+    - Permitir filtragem por status e busca por nome ou data (diferencial)
+- **Tela de Detalhes da agência:**
+    - Ao clicar em uma agência, abrir uma visualização detalhada com todas as informações cadastradas.
+    - Opção para editar e salvar as alterações no perfil da agência.
+- **Formulário de Adição/Edição de agências:**
+    - Permitir que o analista/adminstrador adicione novas agências ou edite os existentes.
+    - Incluir campos como nome fantasia, cnpj, inscrição estadual, status e data de fundação.
+- **Confirmação de Exclusão:**
+    - Para analistas/administradores, incluir um fluxo de confirmação antes de excluir uma agência.
+
+**Extras**
+
+- **Design Responsivo:** A aplicação deve ser fácil de usar em dispositivos móveis e desktops.
+- **Boas Práticas de UX:** Considere um layout simples e intuitivo, com feedback visual para o usuário em ações como salvar, excluir, etc.
+- **Componentização:** Estruture o frontend com componentes reutilizáveis e bem-organizados.
+- **Design Patterns**: Se conseguir implementar algum design pattern tanto no front end quanto no backend será um difrencial.
+- Utilizar o docker compose para orquestrar todo o ambiente da aplicação.
+- **Testes:** Implementar testes unitários para os principais endpoints da API e testes básicos de funcionalidade para o frontend.
+
+**Entrega do Desafio:**
+
+Por favor, disponibilize o link do repositório Git com todas as informações necessárias para rodar a aplicação e as instruções de uso. Envie o repositório até 5 dias dias após o recebimento deste e-mail.
+
+Se tiver qualquer dúvida ou precisar de esclarecimentos, fique à vontade para entrar em contato. Estamos ansiosos para conhecer o seu trabalho e torcendo para que você se junte ao nosso time!
+
+Atenciosamente,
