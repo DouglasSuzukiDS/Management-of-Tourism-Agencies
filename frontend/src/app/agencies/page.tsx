@@ -6,12 +6,15 @@ import { api } from "@/utils/api"
 import { useEffect, useState } from "react"
 import { useAuth } from "../../../contexts/auth"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 
 export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
 
    const { user } = useAuth()
+
+   const router = useRouter()
 
    const getAgencies = async () => {
       await api.get('/agency')
@@ -48,7 +51,10 @@ export default function Page() {
 
       agency && setAgency(agItem[0])
 
-      console.log(agency)
+      console.log(agItem[0])
+      console.log(id)
+
+      router.push(`/agencies/${id}`)
    }
 
    useEffect(() => {

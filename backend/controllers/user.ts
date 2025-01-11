@@ -25,7 +25,7 @@ export const getUserById: RequestHandler = async (req, res) => {
       const user = await userService.getUserById(parseInt(id))
 
       if (!user) {
-         res.status(404).json({ error: 'Usuário não encontrado' })
+         res.status(404).json({ error: 'Usuário não encontrado.' })
       }
 
       res.status(200).json({ message: 'Usuário localizado.', user })
@@ -48,7 +48,7 @@ export const createUser: RequestHandler = async (req, res) => {
       const user = await userService.createUser(safeData.data)
 
       // Verifica se o user foi criado
-      if (!user) res.status(400).json({ error: 'Não foi possível criar o usuário, tente mais tarde' })
+      if (!user) res.status(400).json({ error: 'Não foi possível criar o usuário, tente mais tarde.' })
 
       // Retorna os dados do usuário e o token de acesso
       res.status(201).json({ message: 'Usuário criado.', user })
@@ -99,7 +99,7 @@ export const deleteUser: RequestHandler = async (req, res) => {
          token,
          process.env.JWT_SECRET as string,
          async (error, decoded: any) => {
-            if (error) return res.status(401).json({ error: 'Acesso negado' })
+            if (error) return res.status(401).json({ error: 'Acesso negado.' })
 
             role = decoded.role
          }

@@ -14,16 +14,22 @@ datasource db {
 }
 
 model Agency {
-  id          Int    @id @default(autoincrement())
-  name        String
-  description String
-  // status      Boolean @default(false)
+  id            Int     @id @default(autoincrement())
+  name          String
+  fantasyName   String
+  cnpj          Int
+  registerState Int
+  status        Boolean
+  description   String
+  foundation    String
+  email         String
+  contact       Int
 }
 
 model User {
   id       Int    @id @default(autoincrement())
   name     String
-  login    String @unique
+  email    String @unique
   password String
   role     String
 }

@@ -17,9 +17,9 @@ export const getUserById = async (id: number) => {
 }
 
 // Usado no Signup
-export const getUser = async (login: string) => {
+export const getUser = async (email: string) => {
    const user = await prisma.user.findFirst({
-      where: { login }
+      where: { email }
    })
 
    if (user) return user
@@ -28,10 +28,10 @@ export const getUser = async (login: string) => {
 }
 
 export const createUser = async (data: Prisma.UserCreateInput) => {
-   // Verifica se o login já existe
-   const userExists = await prisma.user.findFirst({ where: { login: data.login } })
+   // Verifica se o email já existe
+   const userExists = await prisma.user.findFirst({ where: { email: data.email } })
 
-   if (userExists) throw new Error("Login indisponível.")
+   if (userExists) throw new Error("email indisponível.")
 
    // Cria o hash da senha
    const hashedPassword = await hash(data.password, 10)
@@ -48,7 +48,7 @@ export const createUser = async (data: Prisma.UserCreateInput) => {
 }
 
 export const updateUser = async (id: number, data: Prisma.UserUpdateInput) => {
-   // Verifica se existe um usuario com o login
+   // Verifica se existe um usuario com o id
    const userExists = await prisma.user.findFirst({ where: { id } })
 
    if (!userExists) throw new Error("Usuário não encontrado.")
