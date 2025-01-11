@@ -1,65 +1,49 @@
 'use client'
 
-import { FormEvent, FormEventHandler, useState } from "react"
+import { useState } from "react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
-import { api } from "@/utils/api"
-import { Alert, AlertDescription, AlertTitle } from "./ui/alert"
-import { AlertCustom } from "./alertCustom"
-import axios from "axios"
 import { useAuth } from "../../contexts/auth"
+import { useRouter } from "next/navigation"
+import { Login } from "./login"
+import { Register } from "./register"
 
 export const Form = () => {
    const [login, setLogin] = useState('')
    const [password, setPassword] = useState('')
 
+   const [name, setName] = useState('')
+   const [role, setRole] = useState('analyst')
+
+   const [newAccount, setNewAccount] = useState(false)
+
    const { signIn, signOut, user } = useAuth()
 
-   const handleSubmit = async () => {
-      await api.post('/login', { login, password })
-         .then(res => {
-            signIn(login, password)
-
-         })
-         .catch(err => {
-            alert(err.data)
-         })
-   }
-
    return (
-      <div className="text-white border">
-         <h1 className="text-3xl text-center">Realize o Login</h1>
+      <div className="flex flex-col justify-center items-center w-full h-full px-10 text-white gap-10 border">
 
-         <label>Login</label>
-         <Input
-            placeholder='Digite seu login'
-            className="text-black"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-         />
+         {newAccount ?
+            <Register
+               name={name}
+               setName={setName}
+               login={login}
+               setLogin={setLogin}
+               password={password}
+               setPassword={setPassword}
+               role={role}
+               setRole={setRole}
+               setNewAccount={setNewAccount}
+            /> :
 
-         <label>Senha</label>
-         <Input
-            placeholder='Digite sua senha'
-            className="text-black"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-         />
-
-         <Button onClick={handleSubmit}>Logar</Button>
-
-         <Button
-            variant={'outline'}
-            className="text-black">Criar conta</Button>
-
-         <Button
-            variant={'outline'}
-            onClick={signOut}
-            className="text-black">Sair</Button>
-
-         <h1 className="text-3xl text-white">{user?.name}</h1>
-         <h1 className="text-3xl text-white">{user?.login}</h1>
-         <h1 className="text-3xl text-white">{user?.role}</h1>
+            <Login
+               login={login}
+               setLogin={setLogin}
+               password={password}
+               setPassword={setPassword}
+               setNewAccount={setNewAccount} />
+         }
       </div>
+
+
    )
 }

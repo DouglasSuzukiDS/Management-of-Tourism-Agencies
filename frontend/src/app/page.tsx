@@ -1,4 +1,6 @@
-import { About } from "./about";
+import { useEffect } from "react";
+import { useAuth } from "../../contexts/auth";
+import { About } from "../components/about";
 import { App } from "./app";
 
 export default function Home() {

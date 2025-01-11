@@ -1,3 +1,4 @@
+import { SignUp } from "@/types/signUp";
 import { User } from "@/types/user";
 import { api } from "@/utils/api";
 import { jwtDecode } from "jwt-decode";
@@ -7,8 +8,8 @@ import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffe
 type AuthContextType = {
    user: User | null
    setUser: Dispatch<SetStateAction<User | null>>
-   signUp: (user: User) => void
-   signIn: (name: string, password: string) => void
+   signUp: (user: SignUp) => Promise<boolean>
+   signIn: (login: string, password: string) => Promise<boolean>
    signOut: () => void
    loadStorage: () => void
 }
@@ -21,22 +22,38 @@ type Props = {
 export const AuthProvider = ({ children }: Props) => {
    const [user, setUser] = useState<User | null>(null)
 
-   const signUp = async (user: User) => {
-      //const newUser = await api.post('/register')
+   const signUp = async (user: SignUp) => {
+      const newUser = await api.post('/register', user)
+         .then(res => {
+            console.log(res.data)
+
+            return true
+         })
+         .catch(err => {
+            console.log(err)
+            return false
+         })
+
+      return newUser
    }
 
    const signIn = async (login: string, password: string) => {
-      const newUser = await api.post('/login', { login, password })
+      const logged = await api.post('/login', { login, password })
          .then(res => {
             console.log(res.data)
 
             setUser(res.data.user)
 
             localStorage.setItem('token', res.data.token)
-         })
-         .catch(err => console.error(err))
 
-      return newUser
+            return true
+         })
+         .catch(err => {
+            console.log(err)
+            return false
+         })
+
+      return logged
    }
 
    const signOut = async () => {
