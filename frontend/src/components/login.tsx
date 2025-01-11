@@ -27,7 +27,7 @@ export const Login = ({ login, setLogin, password, setPassword, setNewAccount }:
          setLogin('')
          setPassword('')
 
-         router.push('(home)')
+         router.push('home')
       } else {
          alert('Falha ao realizar login!')
       }
@@ -54,13 +54,13 @@ export const Login = ({ login, setLogin, password, setPassword, setNewAccount }:
 
          <div className="w-full flex gap-5">
             <Button
-               variant={"secondary"}
-               className="font-bold w-1/4"
+               variant={"default"}
+               className="text-black font-bold w-1/4 bg-white hover:bg-black hover:text-white hover:border"
                onClick={handleSubmit}>Logar</Button>
 
             <Button
                variant={'ghost'}
-               className="text-white font-bold w-1/4 hover:text-black transition-all ease-linear duration-75"
+               className="text-white font-bold w-1/4 border hover:text-black transition-all ease-linear duration-75"
                onClick={() => setNewAccount(true)}>
                Criar conta
             </Button>

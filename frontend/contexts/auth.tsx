@@ -1,8 +1,9 @@
+'use client'
+
 import { SignUp } from "@/types/signUp";
 import { User } from "@/types/user";
 import { api } from "@/utils/api";
 import { jwtDecode } from "jwt-decode";
-import { useRouter } from "next/router";
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
@@ -10,8 +11,8 @@ type AuthContextType = {
    setUser: Dispatch<SetStateAction<User | null>>
    signUp: (user: SignUp) => Promise<boolean>
    signIn: (login: string, password: string) => Promise<boolean>
-   signOut: () => void
-   loadStorage: () => void
+   signOut: () => Promise<boolean>
+   loadStorage: () => Promise<boolean>
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -60,6 +61,8 @@ export const AuthProvider = ({ children }: Props) => {
       setUser(null)
 
       localStorage.clear()
+
+      return true
    }
 
    const loadStorage = async () => {
@@ -70,11 +73,17 @@ export const AuthProvider = ({ children }: Props) => {
             const decodedToken = jwtDecode<User>(token)
 
             setUser(decodedToken)
+
+            return true
          } catch (err) {
             console.log(err)
             localStorage.clear()
+
+            return false
          }
       }
+
+      return false
    }
 
    useEffect(() => {

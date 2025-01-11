@@ -30,7 +30,8 @@ export const Register = ({ name, setName, login, setLogin, password, setPassword
       const safeParse = userSchema.safeParse(data)
 
       if (!safeParse.success) {
-         alert(JSON.stringify(safeParse.error.flatten().fieldErrors))
+         // alert(JSON.stringify(safeParse.error.flatten().fieldErrors))
+         alert('Preencha os campos corretamente.')
          return
       }
       const logged = await signUp(data)
@@ -81,13 +82,13 @@ export const Register = ({ name, setName, login, setLogin, password, setPassword
 
          <div className="w-full flex gap-5">
             <Button
-               variant={"default"}
-               className="text-black font-bold w-1/4 bg-white hover:bg-black hover:text-white hover:border"
+               variant={"ghost"}
+               className="text-white font-bold w-1/4 border transition-all ease-linear duration-75 hover:text-black "
                onClick={handleSubmit}>Registrar</Button>
 
             <Button
-               variant={'ghost'}
-               className="text-white font-bold w-1/4 border transition-all ease-linear duration-75 hover:text-black "
+               variant={'default'}
+               className="text-black font-bold w-1/4 bg-white hover:bg-black hover:text-white hover:border"
                onClick={() => setNewAccount(false)}>
                Fazer Login
             </Button>

@@ -20,7 +20,7 @@ export const Form = () => {
    const { signIn, signOut, user } = useAuth()
 
    return (
-      <div className="flex flex-col justify-center items-center w-full h-full px-10 text-white gap-10 border">
+      <div className="flex flex-col w-1/2 justify-center items-center w-full h-full px-10 text-white gap-10 border">
 
          {newAccount ?
             <Register
