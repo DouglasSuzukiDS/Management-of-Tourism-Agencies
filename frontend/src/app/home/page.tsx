@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { useAuth } from "../../../contexts/auth"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
+import { SidebarComponent } from "@/components/sidebar"
 
 export default function Page() {
    const { signOut, loadStorage } = useAuth()
@@ -22,14 +23,18 @@ export default function Page() {
    }
 
    useEffect(() => {
-      checkIfLogged()
+      //checkIfLogged()
    }, [])
 
    return (
-      <div className="w-screen h-screen">
-         <h1 className="text-3xl">Home</h1>
+      <div className="w-screen h-screen flex flex-row bg-customGray-medium">
 
-         <Button onClick={handleClick}>Sair</Button>
+         <SidebarComponent />
+
+         <div>
+            <h1 className="text-3xl">Home</h1>
+         </div>
+
       </div>
    )
 }
