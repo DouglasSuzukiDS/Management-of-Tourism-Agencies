@@ -116,7 +116,10 @@ export default function Page() {
                               {item.status === true ? 'ATIVA' : 'INATIVA'}
                            </Badge>
 
-                           <Button onClick={() => showAgency(item.id)}>
+                           <Button
+                              variant={'ghost'}
+                              className="border border-black font-bold"
+                              onClick={() => showAgency(item.id)}>
                               Mais informações
                            </Button>
 
@@ -134,7 +137,7 @@ export default function Page() {
                               <Button
                                  variant={'destructive'}
                                  disabled={user?.role !== 'admin' && true}
-                                 className={`flex justify-center ${user?.role !== 'admin' && 'cursor-not-allowed'}`}
+                                 className={`flex font-bold justify-center ${user?.role !== 'admin' && 'cursor-not-allowed'}`}
                                  onClick={() => deleteAgency(item.id)}
                               >Excluir</Button>
                            </div>

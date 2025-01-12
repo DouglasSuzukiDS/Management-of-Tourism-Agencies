@@ -69,10 +69,20 @@ export function SignUpForm({ user, setUsers }: Props) {
       const data = { name, email, password, role }
       const safeData = signUpSchema.safeParse(data)
 
-      password === savePassword ? console.log('SIM') : console.error('NÃO')
+      password === savePassword ? console.log('SIM') : console.log('NÃO')
 
       if (!safeData.success) {
          console.log(safeData.error.flatten().fieldErrors)
+         const errors = safeData.error.flatten().fieldErrors
+
+         let errorsList = ['Não foi possível editar os dados do colaborador.\n\n']
+         errors.name && errorsList.push(`Campo nome: ${errors.name}\n\n`)
+         errors.email && errorsList.push(`Campo email: ${errors.email}\n\n`)
+         errors.password && errorsList.push(`Campo senha: ${errors.password}\n\n`)
+
+
+
+         alert(errorsList.join('').replace(',', ''))
       } else {
          await api.put(`/user/${id}`, {
             name,
@@ -93,8 +103,10 @@ export function SignUpForm({ user, setUsers }: Props) {
                   })
                   .catch(err => {
                      console.error(err)
+                     alert('Não foi possível editar os dados do colaborador.')
                      return
                   })
+               clearInputs()
             })
             .catch(err => {
                console.error(err)
@@ -121,8 +133,6 @@ export function SignUpForm({ user, setUsers }: Props) {
          setRole('analyst')
 
          setSavePassword(user.password)
-
-         console.log(`Agencia: ${user}`)
       }
    }, [user])
 
@@ -137,15 +147,17 @@ export function SignUpForm({ user, setUsers }: Props) {
                   tooltipText="Adicionar um novo colaborador"
                   onClick={() => { }}
                /> :
-               <Button>Editar</Button>
+               <Button
+                  variant={'default'}
+                  className="bg-blue-400 font-bold hover:bg-blue-500 hover:opacity-75">Editar</Button>
             }
          </DialogTrigger>
 
          <DialogContent
-            className="sm:max-w-[425px] max-h-[500px] overflow-y-auto bg-customGray-medium text-gray-200">
+            className="sm:max-w-[425px] max-h-[500px] overflow-y-auto bg-customGray-medium text-gray-200 rounded-md">
 
             <DialogHeader>
-               <DialogTitle>Cadastrar um novo colaborador</DialogTitle>
+               <DialogTitle>{user === null ? 'Cadastrar um novo colaborador' : 'Editar dados do colaborador'}</DialogTitle>
                <DialogDescription>
                   Informe os dados do colaborador
                </DialogDescription>

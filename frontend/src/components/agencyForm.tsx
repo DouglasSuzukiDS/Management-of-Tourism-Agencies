@@ -146,7 +146,9 @@ export function AgencyForm({ agency, setAgencies }: Props) {
                   tooltipText="Adicionar uma nova agência"
                   onClick={() => { }}
                /> :
-               <Button>Editar</Button>
+               <Button
+                  variant={'default'}
+                  className="bg-blue-400 font-bold hover:bg-blue-500 hover:opacity-75">Editar</Button>
             }
          </DialogTrigger>
 
@@ -154,7 +156,7 @@ export function AgencyForm({ agency, setAgencies }: Props) {
             className="sm:max-w-[425px] max-h-[500px] overflow-y-auto bg-customGray-medium text-gray-200">
 
             <DialogHeader>
-               <DialogTitle>Cadastrar nova agência</DialogTitle>
+               <DialogTitle>{agency === null ? 'Cadastrar uma nova agência' : 'Editar dados da agência'}</DialogTitle>
                <DialogDescription>
                   Informe os dados da agência
                </DialogDescription>
