@@ -2,56 +2,66 @@
    {
       "name": "Isabella e Andrea Lavanderia ME",
       "fantasyName": "Lavanderia Isabella",
-      "cnpj": 36153087000184,
-      "registerState": 206907612635,
+      "cnpj": "36153087000184",
+      "registerState": "206907612635",
       "status": true,
       "description": "Lavanderia especializada em serviços de lavagem e passadoria.",
       "foundation": "18/07/2020",
       "email": "posvenda@isabellaeandrealavanderiame.com.br",
-      "contact": 19986047306
+      "contact": "19986047306",
+      "address": "Rua das Flores, 123",
+      "uf": "SP"
    },
    {
       "name": "João e Maria Comércio LTDA",
       "fantasyName": "Comércio João e Maria",
-      "cnpj": 12345678000123,
-      "registerState": 123456789012,
+      "cnpj": "12345678000123",
+      "registerState": "123456789012",
       "status": true,
       "description": "Loja de variedades com produtos para o lar e presentes.",
       "foundation": "15/03/2018",
       "email": "contato@joaoemariacomercio.com.br",
-      "contact": 11987654321
+      "contact": "11987654321",
+      "address": "Avenida Central, 456",
+      "uf": "RJ"
    },
    {
       "name": "Carlos e Ana Consultoria ME",
       "fantasyName": "Consultoria Carlos e Ana",
-      "cnpj": 98765432000198,
-      "registerState": 987654321098,
+      "cnpj": "98765432000198",
+      "registerState": "987654321098",
       "status": true,
       "description": "Consultoria empresarial focada em gestão e estratégia.",
       "foundation": "22/11/2019",
       "email": "consultoria@carloseanaconsultoria.com.br",
-      "contact": 21987654321
+      "contact": "21987654321",
+      "address": "Praça da Liberdade, 789",
+      "uf": "MG"
    },
    {
       "name": "Pedro e Paula Serviços EIRELI",
       "fantasyName": "Serviços Pedro e Paula",
-      "cnpj": 45678912000145,
-      "registerState": 456789123456,
+      "cnpj": "45678912000145",
+      "registerState": "456789123456",
       "status": true,
       "description": "Empresa de prestação de serviços gerais e manutenção.",
       "foundation": "10/05/2021",
       "email": "servicos@pedroepaulaservicos.com.br",
-      "contact": 31987654321
+      "contact": "31987654321",
+      "address": "Rua das Palmeiras, 101",
+      "uf": "BA"
    },
    {
       "name": "Lucas e Luiza Tecnologia LTDA",
       "fantasyName": "Tecnologia Lucas e Luiza",
-      "cnpj": 65432109000165,
-      "registerState": 654321098765,
+      "cnpj": "65432109000165",
+      "registerState": "654321098765",
       "status": true,
       "description": "Desenvolvimento de software e soluções tecnológicas.",
       "foundation": "30/09/2020",
       "email": "tecnologia@lucaseluziatecnologia.com.br",
-      "contact": 41987654321
+      "contact": "41987654321",
+      "address": "Avenida Paulista, 202",
+      "uf": "SP"
    }
 ]

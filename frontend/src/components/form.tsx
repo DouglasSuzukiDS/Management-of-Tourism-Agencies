@@ -6,7 +6,7 @@ import { Login } from "./login"
 import { Register } from "./register"
 
 export const Form = () => {
-   const [login, setLogin] = useState('')
+   const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
 
    const [name, setName] = useState('')
@@ -23,8 +23,8 @@ export const Form = () => {
             <Register
                name={name}
                setName={setName}
-               login={login}
-               setLogin={setLogin}
+               email={email}
+               setEmail={setEmail}
                password={password}
                setPassword={setPassword}
                role={role}
@@ -33,8 +33,8 @@ export const Form = () => {
             /> :
 
             <Login
-               login={login}
-               setLogin={setLogin}
+               email={email}
+               setEmail={setEmail}
                password={password}
                setPassword={setPassword}
                setNewAccount={setNewAccount} />

@@ -11,8 +11,8 @@ import { SignUp } from "@/types/signUp"
 type Props = {
    name: string
    setName: Dispatch<SetStateAction<string>>
-   login: string
-   setLogin: Dispatch<SetStateAction<string>>
+   email: string
+   setEmail: Dispatch<SetStateAction<string>>
    password: string
    setPassword: Dispatch<SetStateAction<string>>
    role: string
@@ -20,13 +20,20 @@ type Props = {
    setNewAccount: Dispatch<SetStateAction<boolean>>
 }
 
-export const Register = ({ name, setName, login, setLogin, password, setPassword, role, setRole, setNewAccount }: Props) => {
+export const Register = ({ name, setName, email, setEmail, password, setPassword, role, setRole, setNewAccount }: Props) => {
    const router = useRouter()
 
    const { signUp, signOut, user } = useAuth()
 
+   const goToLogin = () => {
+      setEmail('')
+      setPassword('')
+      setRole('analyst')
+      setNewAccount(false)
+   }
+
    const handleSubmit = async () => {
-      const data: SignUp = { name, login, password, role }
+      const data: SignUp = { name, email, password, role }
       const safeParse = userSchema.safeParse(data)
 
       if (!safeParse.success) {
@@ -40,7 +47,7 @@ export const Register = ({ name, setName, login, setLogin, password, setPassword
          alert('Usuário realizado com sucesso!')
 
          setName('')
-         setLogin('')
+         setEmail('')
          setPassword('')
          setRole('analyst')
          setNewAccount(false)
@@ -61,10 +68,10 @@ export const Register = ({ name, setName, login, setLogin, password, setPassword
          />
 
          <InputCustom
-            label="Login"
-            placeholder="Digite seu login"
-            value={login}
-            onChange={setLogin}
+            label="Email"
+            placeholder="Digite seu email"
+            value={email}
+            onChange={setEmail}
          />
 
          <InputCustom
@@ -89,7 +96,7 @@ export const Register = ({ name, setName, login, setLogin, password, setPassword
             <Button
                variant={'default'}
                className="text-black font-bold w-1/4 bg-white hover:bg-black hover:text-white hover:border"
-               onClick={() => setNewAccount(false)}>
+               onClick={goToLogin}>
                Fazer Login
             </Button>
          </div>
@@ -99,6 +106,6 @@ export const Register = ({ name, setName, login, setLogin, password, setPassword
             className="text-black">Sair</Button>
 
          <h1 className="text-3xl text-white">{user?.name}</h1>
-      </div>
+      </div >
    )
 }

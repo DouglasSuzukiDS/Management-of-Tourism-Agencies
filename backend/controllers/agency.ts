@@ -20,12 +20,17 @@ export const getAgency: RequestHandler = async (req, res) => {
    try {
       const agencyById = await agencyService.getAgencyById(parseInt(id))
 
-      if (!agencyById) res.status(404).json({ error: 'Agência não encontrada.' })
+      if (!agencyById) {
+         res.status(404).json({ error: 'Agência não encontrada.' })
+
+         return
+      }
 
       res.status(200).json({ message: 'Agência localizada.', agency: agencyById })
    } catch (err) {
       console.error(err)
       res.status(500).json({ error: 'Ocorreu um erro ao buscar a agência.' })
+      return
    }
 }
 
@@ -45,7 +50,7 @@ export const createAgency: RequestHandler = async (req, res) => {
       if (!agency) res.status(400).json({ error: 'Não foi possível criar a agência. Por favor,tente mais tarde.' })
 
       // Se a agencia for criata ele retorna os dados
-      res.status(201).json({ message: 'Agência criada.', agency })
+      res.status(201).json({ message: 'Agência criada.', })
    } catch (err) {
       console.error(err)
       res.status(404).json({ error: 'Não foi possível criar a agência. Por favor,tente mais tarde.' })
@@ -105,11 +110,12 @@ export const deleteAgency: RequestHandler = async (req, res) => {
             res.status(200).json({ message: 'Agência removida do sistema.', agency })
          } catch (err) {
             console.error(err)
+
+            // Se ROLE não por admin error um erro.
             res.status(404).json({ error: 'Não foi possível remover a agência do sistema.' })
          }
+      } else {
+         res.status(404).json({ error: 'Não foi possível remover a agência do sistema.' })
       }
    }
-
-   // Se ROLE não por admin error um erro.
-   res.status(404).json({ error: 'Você não pode executar essa ação.' })
 }

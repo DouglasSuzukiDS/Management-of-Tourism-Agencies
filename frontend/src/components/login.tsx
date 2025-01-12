@@ -1,36 +1,41 @@
 import { Dispatch, SetStateAction, useState } from "react"
-import { Input } from "./ui/input"
 import { Button } from "./ui/button"
 import { useRouter } from "next/navigation"
 import { useAuth } from "../../contexts/auth"
 import { InputCustom } from "./input"
 
 type Props = {
-   login: string
-   setLogin: Dispatch<SetStateAction<string>>
+   email: string
+   setEmail: Dispatch<SetStateAction<string>>
    password: string
    setPassword: Dispatch<SetStateAction<string>>
    setNewAccount: Dispatch<SetStateAction<boolean>>
 }
 
-export const Login = ({ login, setLogin, password, setPassword, setNewAccount }: Props) => {
+export const Login = ({ email, setEmail, password, setPassword, setNewAccount }: Props) => {
    const router = useRouter()
 
    const { signIn, signOut, user } = useAuth()
 
    const handleSubmit = async () => {
-      const logged = await signIn(login, password)
+      const logged = await signIn(email, password)
 
       if (logged) {
          alert('Login realizado com sucesso!')
 
-         setLogin('')
+         setEmail('')
          setPassword('')
 
-         router.push('home')
+         router.push('agencies')
       } else {
          alert('Falha ao realizar login!')
       }
+   }
+
+   const goToRegister = () => {
+      setEmail('')
+      setPassword('')
+      setNewAccount(true)
    }
 
    return (
@@ -38,10 +43,10 @@ export const Login = ({ login, setLogin, password, setPassword, setNewAccount }:
          <h1 className="text-3xl text-center">Realize o Login</h1>
 
          <InputCustom
-            label="Login"
-            placeholder="Digite seu login"
-            value={login}
-            onChange={setLogin}
+            label="Email"
+            placeholder="Digite seu email"
+            value={email}
+            onChange={setEmail}
          />
 
          <InputCustom
@@ -61,7 +66,7 @@ export const Login = ({ login, setLogin, password, setPassword, setNewAccount }:
             <Button
                variant={'ghost'}
                className="text-white font-bold w-1/4 border hover:text-black transition-all ease-linear duration-75"
-               onClick={() => setNewAccount(true)}>
+               onClick={goToRegister}>
                Criar conta
             </Button>
 

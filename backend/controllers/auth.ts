@@ -44,10 +44,10 @@ export const signIn: RequestHandler = async (req, res) => {
    }
 
    // Verifica se o usuário existe
-   const user = await getUser(safeData.data.login)
+   const user = await getUser(safeData.data.email)
 
    if (!user) {
-      res.status(404).json({ error: 'Login/Senha inválida' })
+      res.status(404).json({ error: 'Email/Senha inválida' })
       return
    }
 
@@ -57,7 +57,7 @@ export const signIn: RequestHandler = async (req, res) => {
    if (verifyPassword) {
       const userInfos: SigninData = {
          name: user.name,
-         login: user.login,
+         email: user.email,
          role: user.role
       }
 

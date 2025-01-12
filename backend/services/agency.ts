@@ -1,5 +1,3 @@
-import { RequestHandler } from 'express'
-
 import { prisma } from '../utils/prisma'
 import { Prisma } from '@prisma/client'
 

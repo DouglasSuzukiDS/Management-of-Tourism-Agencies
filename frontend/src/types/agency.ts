@@ -1,4 +1,5 @@
 export type Agency = {
+   id: number
    name: string
    fantasyName: string
    cnpj: number
@@ -8,4 +9,6 @@ export type Agency = {
    foundation: string
    email: string
    contact: number
+   address: string
+   uf: string
 }

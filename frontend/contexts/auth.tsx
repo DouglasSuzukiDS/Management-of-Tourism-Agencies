@@ -38,8 +38,8 @@ export const AuthProvider = ({ children }: Props) => {
       return newUser
    }
 
-   const signIn = async (login: string, password: string) => {
-      const logged = await api.post('/login', { login, password })
+   const signIn = async (email: string, password: string) => {
+      const logged = await api.post('/login', { email, password })
          .then(res => {
             console.log(res.data)
 

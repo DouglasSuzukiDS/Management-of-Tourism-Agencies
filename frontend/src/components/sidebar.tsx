@@ -29,10 +29,10 @@ export const SidebarComponent = () => {
    }, [])
 
    return (
-      <div className="bg-customGray-dark py-10 px-5">
+      <div className="h-auto bg-customGray-dark py-10 px-5">
          <h1 className="text-white mb-5">Gestão de Agências de Turismo</h1>
 
-         <div className="flex flex-col h-full justify-between border">
+         <div className="flex flex-col h-full justify-around">
             <div>
                {linkItems.map((item, index) => (
                   <Link key={index} href={item.href} className="flex gap-4 my-4">

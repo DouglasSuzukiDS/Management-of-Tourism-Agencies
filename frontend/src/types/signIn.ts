@@ -1,5 +1,5 @@
 export type SigninData = {
    name: string
-   login: string
+   email: string
    role: string
 }

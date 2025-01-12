@@ -8,15 +8,17 @@ import { useEffect, useState } from "react"
 type Props = {
    params: Promise<{ id: string }>
 }
-export default async function Page({ params }: Props) {
-   const { id } = await params
+export default function Page({ params }: Props) {
 
    const [agency, setAgency] = useState<Agency>()
 
    const router = useRouter()
 
    const getAgency = async () => {
+      const { id } = await params
+      
       await api.get(`/agency/${id}`)
+         //await api.get(`/agency/5`)
          .then(res => {
             setAgency(res.data.agency)
          })
@@ -36,6 +38,7 @@ export default async function Page({ params }: Props) {
       <div>
          <p>Agencia - {agency?.name}</p>
          <p>Descrição - {agency?.description}</p>
+         <p>OK</p>
       </div>
    )
 }

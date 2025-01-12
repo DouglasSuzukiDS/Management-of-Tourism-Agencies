@@ -9,4 +9,6 @@ export type Agency = {
    foundation: string
    email: string
    contact: number
+   address: string
+   uf: string
 }

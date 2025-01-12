@@ -12,7 +12,7 @@ export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
 
-   const { user } = useAuth()
+   const { user, loadStorage } = useAuth()
 
    const router = useRouter()
 
@@ -57,15 +57,21 @@ export default function Page() {
       router.push(`/agencies/${id}`)
    }
 
+   const checkIfBeLogged = async () => {
+      const logged = await loadStorage()
+
+      logged && getAgencies()
+   }
+
    useEffect(() => {
-      getAgencies()
+      checkIfBeLogged()
    }, [])
 
    return (
       <div className="w-screen h-screen flex flex-row bg-customGray-medium">
-         <SidebarComponent />
+         {/* <SidebarComponent /> */}
 
-         <div className="flex flex-1 justify-center items-center px-10 border">
+         <div className="h-auto flex flex-1 justify-center items-center px-10">
             <div className="bg-customGray-light rounded border">
                <h1 className="text-3xl text-gray-200">Agências</h1>
 
@@ -85,12 +91,14 @@ export default function Page() {
 
                         <Button>Editar</Button>
 
-                        <Button
-                           variant={'destructive'}
-                           disabled={user?.role !== 'admin' && true}
-                           className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}
-                           onClick={() => deleteAgency(item.id)}
-                        >Excluir</Button>
+                        <div className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}>
+                           <Button
+                              variant={'destructive'}
+                              disabled={user?.role !== 'admin' && true}
+                              className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}
+                              onClick={() => deleteAgency(item.id)}
+                           >Excluir</Button>
+                        </div>
                      </div>
                   </div>
                ))}

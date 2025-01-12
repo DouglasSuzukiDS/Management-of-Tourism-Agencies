@@ -114,9 +114,9 @@ export const deleteUser: RequestHandler = async (req, res) => {
             console.error(err)
             res.status(404).json({ error: 'Usuário não encontrado.' })
          }
+      } else {
+         // Se ROLE não por admin error um erro.
+         res.status(404).json({ error: 'Você não pode executar essa ação.' })
       }
    }
-
-   // Se ROLE não por admin error um erro.
-   res.status(404).json({ error: 'Você não pode executar essa ação.' })
 }

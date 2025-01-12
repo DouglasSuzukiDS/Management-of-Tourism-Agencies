@@ -17,13 +17,15 @@ model Agency {
   id            Int     @id @default(autoincrement())
   name          String
   fantasyName   String
-  cnpj          Int
-  registerState Int
+  cnpj          String
+  registerState String
   status        Boolean
   description   String
   foundation    String
   email         String
-  contact       Int
+  contact       String
+  address       String
+  uf            String
 }
 
 model User {
