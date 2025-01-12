@@ -84,7 +84,9 @@ export default function Page() {
                <div className="flex justify-between">
                   <h1 className="text-3xl text-gray-200 mb-10">Agências</h1>
 
-                  <AgencyForm agency={null} />
+                  <AgencyForm
+                     agency={null}
+                     setAgencies={setAgencies} />
                </div>
 
                {/* Cards Container */}
@@ -95,14 +97,13 @@ export default function Page() {
                         {/* FantasyName & CNPJ */}
                         <div className="flex flex-col">
                            <div className="flex flex-col gap-2">
-                              <p>{item.fantasyName}</p>
-                              <p>Desde: {item.foundation}</p>
-
+                              <p className="font-bold text-center">{item.fantasyName}</p>
+                              <p><span className="font-bold">Desde: </span>{item.foundation}</p>
                            </div>
 
                            <div className="flex flex-col gap-2">
-                              <p>CNPJ: {item.cnpj}</p>
-                              <p>Inscrição Estadual: {item.registerState}</p>
+                              <p><span className="font-bold">CNPJ: </span>{item.cnpj}</p>
+                              <p><span className="font-bold">Inscrição Estadual: </span>{item.registerState}</p>
                            </div>
                         </div>
 
@@ -125,7 +126,9 @@ export default function Page() {
                         {/* Buttons */}
                         <div className="flex justify-between gap-4">
 
-                           <AgencyForm agency={item} />
+                           <AgencyForm
+                              agency={item}
+                              setAgencies={setAgencies} />
 
                            <div className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}>
                               <Button

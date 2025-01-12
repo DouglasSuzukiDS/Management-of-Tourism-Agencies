@@ -53,9 +53,14 @@ export const updateUser = async (id: number, data: Prisma.UserUpdateInput) => {
 
    if (!userExists) throw new Error("Usuário não encontrado.")
 
+   const hashedPassword = await hash(data.password as string, 10)
+
    const updatedUser = await prisma.user.update({
       where: { id },
-      data
+      data: {
+         ...data,
+         password: hashedPassword
+      }
    })
 
    return updatedUser

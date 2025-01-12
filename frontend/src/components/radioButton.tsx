@@ -11,12 +11,14 @@ type Props = {
    state: any
    setState: Dispatch<SetStateAction<any>>
    options: Option[]
+   checked: string
 }
 
-export const RadioButton = ({ state, setState, options }: Props) => {
+export const RadioButton = ({ state, setState, options, checked }: Props) => {
+   // alert(`Checked is: ${typeof checked}`)
    return (
       <RadioGroup
-         defaultValue={options[0].value}
+         defaultValue={checked}
          onValueChange={value => setState(value)}
          className="flex justify-between">
          {options.map((radio, index) => (

@@ -12,11 +12,14 @@ import { RadioButton } from "./radioButton"
 import { Agency } from "@/types/agency"
 import { useAuth } from "../../contexts/auth"
 import { api } from "@/utils/api"
+import { User } from "@/types/user"
+import { getAgencies } from "@/utils/agency"
 
 type Props = {
    agency: Agency | null
+   setAgencies: Dispatch<SetStateAction<Agency[]>>
 }
-export function AgencyForm({ agency }: Props) {
+export function AgencyForm({ agency, setAgencies }: Props) {
    const [name, setName] = useState('')
    const [fantasyName, setFantasyName] = useState('')
    const [description, setDescription] = useState('')
@@ -36,8 +39,30 @@ export function AgencyForm({ agency }: Props) {
    ]
 
    const handleNewAgency = async () => {
-      // alert(`O valor em status é: ${status}`)
-      alert(`Register`)
+      const data = { name, fantasyName, description, cnpj, registerState, foundation, email, contact, address, uf, status }
+
+      await api.post('/agency', { ...data })
+         .then(async (res) => {
+            alert('Agência cadastrada')
+            clearInputs()
+
+            await api.get('/agency')
+               .then(res => {
+                  console.log(res.data)
+
+                  setAgencies(res.data.agencies)
+               })
+               .catch(err => {
+                  console.error(err)
+                  return
+               })
+
+            console.log(res.data)
+         })
+         .catch(err => {
+            console.error(err)
+            alert('Não foi possível cadastrar a agência. Verifique se todos os campos estão preenchidos ou tente mais tarde.')
+         })
    }
 
    const handleEditAgency = async (id: number) => {
@@ -54,9 +79,21 @@ export function AgencyForm({ agency }: Props) {
          uf,
          status,
       })
-         .then(res => {
+         .then(async (res) => {
             alert('Agência editada')
-            console.log(res)
+            console.log(res.data)
+            clearInputs()
+
+            await api.get('/agency')
+               .then(res => {
+                  console.log(res.data)
+
+                  setAgencies(res.data.agencies)
+               })
+               .catch(err => {
+                  console.error(err)
+                  return
+               })
          })
          .catch(err => {
             console.error(err)
@@ -64,19 +101,23 @@ export function AgencyForm({ agency }: Props) {
          })
    }
 
+   const clearInputs = async () => {
+      setName('')
+      setFantasyName('')
+      setDescription('')
+      setCnpj('')
+      setRegisterState('')
+      setFoundation('')
+      setContact('')
+      setEmail('')
+      setAddress('')
+      setUf('')
+      setStatus(true)
+   }
+
    useEffect(() => {
       if (agency === null) {
-         setName('')
-         setFantasyName('')
-         setDescription('')
-         setCnpj('')
-         setRegisterState('')
-         setFoundation('')
-         setContact('')
-         setEmail('')
-         setAddress('')
-         setUf('')
-         setStatus(true)
+         clearInputs()
       } else {
          setName(agency.name)
          setFantasyName(agency.fantasyName)
@@ -88,10 +129,11 @@ export function AgencyForm({ agency }: Props) {
          setContact(agency.contact)
          setAddress(agency.address)
          setUf(agency.uf)
-         setStatus(agency.status)
-      }
-   }, [])
+         setStatus(status)
 
+         console.log(`Agencia: ${agency}`)
+      }
+   }, [agency])
 
    return (
       <Dialog>
@@ -131,6 +173,7 @@ export function AgencyForm({ agency }: Props) {
                   options={radioOptions}
                   state={status}
                   setState={setStatus}
+                  checked={String(status)}
                />
 
                <InputCustom
