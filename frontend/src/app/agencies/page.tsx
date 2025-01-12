@@ -7,10 +7,14 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../../../contexts/auth"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
-
+import { Badge } from "@/components/ui/badge"
+import { Plus } from "lucide-react"
+import { TooltipCustom } from "@/components/tooltip"
+import { AgencyForm } from "@/components/agencyForm"
 export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
+   const [newAgency, setNewAgency] = useState(false)
 
    const { user, loadStorage } = useAuth()
 
@@ -67,43 +71,77 @@ export default function Page() {
       checkIfBeLogged()
    }, [])
 
+
    return (
-      <div className="w-screen h-screen flex flex-row bg-customGray-medium">
+      <div className="w-auto h-screen flex flex-row bg-customGray-medium">
          {/* <SidebarComponent /> */}
 
-         <div className="h-auto flex flex-1 justify-center items-center px-10">
-            <div className="bg-customGray-light rounded border">
-               <h1 className="text-3xl text-gray-200">Agências</h1>
+         <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
 
-               {agencies.map(item => (
-                  <div key={item.id} className="flex gap-5 py-5 px-2 flex-wrap border border-b">
+            {/* Agencies */}
+            <div className="h-full flex flex-col warp p-10 bg-customGray-light rounded border overflow-y-auto shadow-md">
+               {/* Title & Button New Agency */}
+               <div className="flex justify-between">
+                  <h1 className="text-3xl text-gray-200 mb-10">Agências</h1>
 
-                     <div className="flex gap-5">
-                        <p>{item.name}</p>
+                  <AgencyForm agency={null} />
+               </div>
 
-                        <p>{item.description}</p>
-                     </div>
+               {/* Cards Container */}
+               <div className="flex justify-center items-center flex-wrap gap-4">
+                  {agencies.map((item, index) => (
+                     <div key={item.id}
+                        className={`flex flex-col gap-5 p-5 flex-wrap border rounded-md hover:opacity-75 ${index % 2 === 0 ? 'bg-neutral-300' : 'bg-neutral-400'}`}>
+                        {/* FantasyName & CNPJ */}
+                        <div className="flex flex-col">
+                           <div className="flex flex-col gap-2">
+                              <p>{item.fantasyName}</p>
+                              <p>Desde: {item.foundation}</p>
 
-                     <div className="flex gap-4">
-                        <Button onClick={() => showAgency(item.id)}>
-                           Mais informações
-                        </Button>
+                           </div>
 
-                        <Button>Editar</Button>
+                           <div className="flex flex-col gap-2">
+                              <p>CNPJ: {item.cnpj}</p>
+                              <p>Inscrição Estadual: {item.registerState}</p>
+                           </div>
+                        </div>
 
-                        <div className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}>
-                           <Button
-                              variant={'destructive'}
-                              disabled={user?.role !== 'admin' && true}
-                              className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}
-                              onClick={() => deleteAgency(item.id)}
-                           >Excluir</Button>
+                        {/* Status & Know more */}
+                        <div className="flex justify-between gap-5">
+                           <Badge
+                              className={`text-white py-2 px-5 border-none ${item.status === true && 'bg-green-600 hover:opacity-75'}`}
+                              variant={item.status === true ? 'outline' : 'destructive'}
+                           >
+                              {item.status === true ? 'ATIVA' : 'INATIVA'}
+                           </Badge>
+
+                           <Button onClick={() => showAgency(item.id)}>
+                              Mais informações
+                           </Button>
+
+
+                        </div>
+
+                        {/* Buttons */}
+                        <div className="flex justify-between gap-4">
+
+                           <AgencyForm agency={item} />
+
+                           <div className={`${user?.role !== 'admin' && 'cursor-not-allowed'}`}>
+                              <Button
+                                 variant={'destructive'}
+                                 disabled={user?.role !== 'admin' && true}
+                                 className={`flex justify-center ${user?.role !== 'admin' && 'cursor-not-allowed'}`}
+                                 onClick={() => deleteAgency(item.id)}
+                              >Excluir</Button>
+                           </div>
                         </div>
                      </div>
-                  </div>
-               ))}
+                  ))}
+               </div>
             </div>
+
          </div>
-      </div>
+      </div >
    )
 }
