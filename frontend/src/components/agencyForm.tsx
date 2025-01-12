@@ -1,54 +1,29 @@
 import { Button } from "@/components/ui/button"
 import {
-   Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger,
+   Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger,
 } from "@/components/ui/dialog"
 import { TooltipCustom } from "./tooltip"
 import { Plus } from "lucide-react"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react"
 import { InputCustom } from "./input"
 import { Textarea } from "./ui/textarea"
 import { Label } from "./ui/label"
 import { RadioButton } from "./radioButton"
 import { Agency } from "@/types/agency"
 import { useAuth } from "../../contexts/auth"
+import { api } from "@/utils/api"
 
 type Props = {
    agency: Agency | null
-   /*name: string
-   setName: Dispatch<SetStateAction<string>>
-
-   fantasyName: string
-   setFantasyName: Dispatch<SetStateAction<string>>
-
-   description: string
-   setSetDescription: Dispatch<SetStateAction<string>>
-
-   cpnj: string
-   setCnpj: Dispatch<SetStateAction<string>>
-
-   registerState: string
-   setRegisterState: Dispatch<SetStateAction<string>>
-
-   role: string
-   setRole: Dispatch<SetStateAction<string>>
-
-   role: string
-   setRole: Dispatch<SetStateAction<string>>
-
-
-   role: string
-   setRole: Dispatch<SetStateAction<string>>
-
-   register: boolean
-   setRegister: Dispatch<SetStateAction<boolean>>*/
 }
 export function AgencyForm({ agency }: Props) {
    const [name, setName] = useState('')
-   const [fantansyName, setFantasyName] = useState('')
+   const [fantasyName, setFantasyName] = useState('')
    const [description, setDescription] = useState('')
    const [cnpj, setCnpj] = useState('')
    const [registerState, setRegisterState] = useState('')
    const [foundation, setFoundation] = useState('')
+   const [email, setEmail] = useState('')
    const [contact, setContact] = useState('')
    const [address, setAddress] = useState('')
    const [uf, setUf] = useState('')
@@ -65,8 +40,28 @@ export function AgencyForm({ agency }: Props) {
       alert(`Register`)
    }
 
-   const handleEditAgency = async () => {
-      alert(`Edit`)
+   const handleEditAgency = async (id: number) => {
+      await api.put(`/agency/${id}`, {
+         name,
+         fantasyName,
+         description,
+         cnpj,
+         registerState,
+         foundation,
+         email,
+         contact,
+         address,
+         uf,
+         status,
+      })
+         .then(res => {
+            alert('Agência editada')
+            console.log(res)
+         })
+         .catch(err => {
+            console.error(err)
+            alert('Não foi possível editar a agência')
+         })
    }
 
    useEffect(() => {
@@ -78,6 +73,7 @@ export function AgencyForm({ agency }: Props) {
          setRegisterState('')
          setFoundation('')
          setContact('')
+         setEmail('')
          setAddress('')
          setUf('')
          setStatus(true)
@@ -88,6 +84,7 @@ export function AgencyForm({ agency }: Props) {
          setCnpj(agency.cnpj)
          setRegisterState(agency.registerState)
          setFoundation(agency.foundation)
+         setEmail(agency.email)
          setContact(agency.contact)
          setAddress(agency.address)
          setUf(agency.uf)
@@ -140,7 +137,7 @@ export function AgencyForm({ agency }: Props) {
                   label="Nome fantasia"
                   placeholder="Digite o nome da agência"
                   className="w-full"
-                  value={fantansyName}
+                  value={fantasyName}
                   onChange={setFantasyName}
                />
 
@@ -182,10 +179,18 @@ export function AgencyForm({ agency }: Props) {
 
                <InputCustom
                   label="Contato"
-                  placeholder="Digite número de contato da agência"
+                  placeholder="Digite o número de contato da agência"
                   className="w-full"
                   value={contact}
                   onChange={setContact}
+               />
+
+               <InputCustom
+                  label="Email"
+                  placeholder="Digite o email da agência"
+                  className="w-full"
+                  value={email}
+                  onChange={setEmail}
                />
 
                <InputCustom
@@ -217,7 +222,7 @@ export function AgencyForm({ agency }: Props) {
                   <Button
                      variant={"ghost"}
                      className="w-full border font-bold"
-                     onClick={handleEditAgency}>
+                     onClick={() => handleEditAgency(agency.id)}>
                      Editar
                   </Button>
                }
