@@ -11,12 +11,14 @@ import { Badge } from "@/components/ui/badge"
 import { Plus } from "lucide-react"
 import { TooltipCustom } from "@/components/tooltip"
 import { AgencyForm } from "@/components/agencyForm"
+import { useAgency } from "@/hooks/useAgency"
 export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
    const [newAgency, setNewAgency] = useState(false)
 
    const { user, loadStorage } = useAuth()
+   // const { agencies, setAgencies, getAgencies, deleteAgency } = useAgency()
 
    const router = useRouter()
 

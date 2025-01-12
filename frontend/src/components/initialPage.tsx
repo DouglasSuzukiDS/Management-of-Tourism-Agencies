@@ -14,7 +14,7 @@ export const InitialPage = () => {
    const checkIfLogged = async () => {
       const logged = await loadStorage()
 
-      if (logged) router.replace('/home')
+      logged && router.push('/agencies')
    }
 
    useEffect(() => {

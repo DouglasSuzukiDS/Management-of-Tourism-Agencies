@@ -7,6 +7,8 @@ import { api } from "@/utils/api"
 import { ArrowBigLeft, Mail, Phone } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { useAuth } from "../../../../contexts/auth"
+import { useAgency } from "@/hooks/useAgency"
 
 type Props = {
    params: Promise<{ id: string }>
@@ -14,6 +16,10 @@ type Props = {
 export default function Page({ params }: Props) {
 
    const [agency, setAgency] = useState<Agency>()
+
+   const { user } = useAuth()
+
+   // const { agencies, setAgencies, getAgencies, getAgencyById, deleteAgency, agency } = useAgency()
 
    const router = useRouter()
 
@@ -31,6 +37,12 @@ export default function Page({ params }: Props) {
 
             router.push('/agencies')
          })
+   }
+
+   const getAgencyXXX = async () => {
+      const { id } = await params
+      // await getAgencyById(parseInt(id))
+
    }
 
    useEffect(() => {
