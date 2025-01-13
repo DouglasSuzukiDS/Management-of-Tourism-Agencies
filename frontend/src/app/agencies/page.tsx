@@ -12,6 +12,7 @@ import { Plus } from "lucide-react"
 import { TooltipCustom } from "@/components/tooltip"
 import { AgencyForm } from "@/components/agencyForm"
 import { useAgency } from "@/hooks/useAgency"
+import { Header } from "@/components/header"
 export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
@@ -79,8 +80,9 @@ export default function Page() {
 
 
    return (
-      <div className="w-auto h-screen flex flex-row bg-customGray-medium">
+      <div className="w-auto h-screen flex flex-col bg-customGray-medium">
          {/* <SidebarComponent /> */}
+         <Header />
 
          <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
 

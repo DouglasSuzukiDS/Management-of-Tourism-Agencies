@@ -30,14 +30,12 @@ export default function Page() {
    }, [])
 
    return (
-      <div className="w-screen h-screen flex flex-row bg-customGray-medium">
+      <div className="w-screen h-screen flex flex-col bg-customGray-medium">
          <Header />
-         {/* <SidebarComponent /> */}
 
-         {/* <div>
-            <h1 className="text-3xl">Home</h1>
-         </div> */}
-
+         <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
+            <h1 className="text-5xl">HOME</h1>
+         </div>
       </div>
    )
 }

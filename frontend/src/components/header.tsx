@@ -14,10 +14,13 @@ export const Header = () => {
    }
 
    return (
-      <header>
-         <Link href={'/home'}>Home</Link>
-         <Link href={'/agencies'}>Agências</Link>
-         <Link href={'/users'}>Users</Link>
+      <header className="bg-red-600 flex justify-around py-5">
+         <nav className="flex justify-center items-center gap-10 font-bold">
+            <Link href={'/home'}>Home</Link>
+            <Link href={'/agencies'}>Agências</Link>
+            <Link href={'/users'}>Users</Link>
+         </nav>
+
          <Button onClick={handleSignOut}>Sair</Button>
       </header>
    )

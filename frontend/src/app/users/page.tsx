@@ -8,6 +8,7 @@ import { useAuth } from "../../../contexts/auth"
 import { useRouter } from "next/navigation"
 import { SignUpForm } from "@/components/signUpForm"
 import { UserTable } from "@/components/userTableList"
+import { Header } from "@/components/header"
 
 
 export default function Page() {
@@ -43,8 +44,9 @@ export default function Page() {
    }, [])
 
    return (
-      <div className="w-auto h-screen flex flex-row bg-customGray-medium">
+      <div className="w-auto h-screen flex flex-col bg-customGray-medium">
          {/* <SidebarComponent /> */}
+         <Header />
 
          <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
 
