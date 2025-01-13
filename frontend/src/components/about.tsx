@@ -3,14 +3,14 @@ import Link from "next/link"
 
 export const About = () => {
    return (
-      <div className="h-screen w-1/2 flex flex-col justify-center items-center gap-10 px-10 border">
+      <div className="hidden h-screen md:w-1/2 md:flex flex-col justify-center items-center gap-10 px-10 border">
          <div className="flex flex-col justify-center items-center">
             <h1 className="text-3xl font-bold text-gray-400">Desenvolvido com 💗</h1>
             <h1 className="text-3xl text-gray-400 font-bold">por Douglas</h1>
          </div>
 
          <p className="text-center text-gray-400 text-lg">
-            Desenvolvedor Fullstack, formado como Técnico em Informática pelo Senac e atulamente estudante de Engenharia de Software pela Gran Faculdade, também sendo aluno do CFBCursos, B7WEB, DankiCode, e Matheus Fraga.
+            Desenvolvedor Fullstack, formado como Técnico em Informática pelo Senac e atualmente estudante de Engenharia de Software pela Gran Faculdade, também sendo aluno do CFBCursos, B7WEB, DankiCode, e Matheus Fraga.
          </p>
 
          <p className="text-center text-gray-400 text-lg">
@@ -18,13 +18,13 @@ export const About = () => {
          </p>
 
          <div className="flex gap-5">
-            <Button variant={'default'}>
+            <Button variant={'ghost'} className="border">
                <Link
                   href={'https://www.linkedin.com/in/douglas-suzuki/'}
                   className="text-center text-gray-400 font-bold">Linkedin</Link>
             </Button>
 
-            <Button variant={'default'} className="">
+            <Button variant={'ghost'} className="border">
                <Link
                   href={'https://github.com/DouglasSuzukiDS'}
                   className="text-center text-gray-400 font-bold">GitHub</Link>

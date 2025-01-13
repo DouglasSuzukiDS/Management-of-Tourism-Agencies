@@ -80,14 +80,14 @@ export default function Page() {
 
 
    return (
-      <div className="w-auto h-screen flex flex-col bg-customGray-medium">
+      <div className="w-auto h-screen overflow-y-auto flex flex-col bg-customGray-medium">
          {/* <SidebarComponent /> */}
          <Header />
 
          <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
 
             {/* Agencies */}
-            <div className="h-full flex flex-col warp p-10 bg-customGray-light rounded border overflow-y-auto shadow-md">
+            <div className="md:w-[70%] h-full flex flex-col warp p-10 bg-customGray-light rounded border overflow-y-auto shadow-md">
                {/* Title & Button New Agency */}
                <div className="flex justify-between">
                   <h1 className="text-3xl text-gray-200 mb-10">Agências</h1>
@@ -101,7 +101,7 @@ export default function Page() {
                <div className="flex justify-center items-center flex-wrap gap-4">
                   {agencies.map((item, index) => (
                      <div key={item.id}
-                        className={`flex flex-col gap-5 p-5 flex-wrap border rounded-md hover:opacity-75 ${index % 2 === 0 ? 'bg-neutral-300' : 'bg-neutral-400'}`}>
+                        className={`max-w-[320px] flex flex-col gap-5 p-5 flex-wrap border rounded-md hover:opacity-75 ${index % 2 === 0 ? 'bg-neutral-300' : 'bg-neutral-400'}`}>
                         {/* FantasyName & CNPJ */}
                         <div className="flex flex-col">
                            <div className="flex flex-col gap-2">
@@ -116,9 +116,9 @@ export default function Page() {
                         </div>
 
                         {/* Status & Know more */}
-                        <div className="flex justify-between gap-5">
+                        <div className="flex flex-col justify-between gap-5 sm:flex-row">
                            <Badge
-                              className={`text-white py-2 px-5 border-none ${item.status === true && 'bg-green-600 hover:opacity-75'}`}
+                              className={`text-white flex justify-center py-2 px-5 border-none ${item.status === true && 'bg-green-600 hover:opacity-75'}`}
                               variant={item.status === true ? 'outline' : 'destructive'}
                            >
                               {item.status === true ? 'ATIVA' : 'INATIVA'}

@@ -90,22 +90,16 @@ export const Register = ({ name, setName, email, setEmail, password, setPassword
          <div className="w-full flex gap-5">
             <Button
                variant={"ghost"}
-               className="text-white font-bold w-1/4 border transition-all ease-linear duration-75 hover:text-black "
+               className="text-white font-bold border transition-all ease-linear duration-75 hover:text-black "
                onClick={handleSubmit}>Registrar</Button>
 
             <Button
                variant={'default'}
-               className="text-black font-bold w-1/4 bg-white hover:bg-black hover:text-white hover:border"
+               className="text-black font-bold bg-white hover:bg-black hover:text-white hover:border"
                onClick={goToLogin}>
                Fazer Login
             </Button>
          </div>
-         <Button
-            variant={'outline'}
-            onClick={signOut}
-            className="text-black">Sair</Button>
-
-         <h1 className="text-3xl text-white">{user?.name}</h1>
       </div >
    )
 }

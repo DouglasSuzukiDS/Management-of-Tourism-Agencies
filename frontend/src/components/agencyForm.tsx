@@ -153,7 +153,7 @@ export function AgencyForm({ agency, setAgencies }: Props) {
          </DialogTrigger>
 
          <DialogContent
-            className="sm:max-w-[425px] max-h-[500px] overflow-y-auto bg-customGray-medium text-gray-200">
+            className="sm:max-w-[425px] max-h-[500px] px-4 overflow-y-auto bg-customGray-medium text-gray-200">
 
             <DialogHeader>
                <DialogTitle>{agency === null ? 'Cadastrar uma nova agência' : 'Editar dados da agência'}</DialogTitle>

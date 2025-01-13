@@ -26,7 +26,8 @@ export const Login = ({ email, setEmail, password, setPassword, setNewAccount }:
          setEmail('')
          setPassword('')
 
-         router.push('agencies')
+         await router.refresh()
+         router.push('/agencies')
       } else {
          alert('Falha ao realizar login!')
       }
@@ -57,26 +58,20 @@ export const Login = ({ email, setEmail, password, setPassword, setNewAccount }:
             type="password"
          />
 
-         <div className="w-full flex gap-5">
+         <div className="w-full flex flex-wrap gap-5">
             <Button
                variant={"default"}
-               className="text-black font-bold w-1/4 bg-white hover:bg-black hover:text-white hover:border"
+               className="text-black font-bold  bg-white hover:bg-black hover:text-white hover:border"
                onClick={handleSubmit}>Logar</Button>
 
             <Button
                variant={'ghost'}
-               className="text-white font-bold w-1/4 border hover:text-black transition-all ease-linear duration-75"
+               className="text-white font-bold  border hover:text-black transition-all ease-linear duration-75"
                onClick={goToRegister}>
                Criar conta
             </Button>
 
          </div>
-         <Button
-            variant={'outline'}
-            onClick={signOut}
-            className="text-black">Sair</Button>
-
-         <h1 className="text-3xl text-white">{user?.name}</h1>
       </div>
    )
 }

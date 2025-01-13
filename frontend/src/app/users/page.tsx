@@ -44,15 +44,15 @@ export default function Page() {
    }, [])
 
    return (
-      <div className="w-auto h-screen flex flex-col bg-customGray-medium">
+      <div className="w-auto h-screen overflow-y-auto flex flex-col bg-customGray-medium">
          {/* <SidebarComponent /> */}
          <Header />
 
          <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
 
-            {/* Agencies */}
+            {/* Users */}
             <div className="h-full flex flex-col warp p-10 bg-customGray-light rounded border overflow-y-auto shadow-md">
-               {/* Title & Button New Agency */}
+               {/* Title & Button New User */}
                <div className="flex justify-between">
                   <h1 className="text-3xl text-gray-200 mb-10">Colaboradores</h1>
 
