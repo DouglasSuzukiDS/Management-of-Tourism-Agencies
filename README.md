@@ -20,11 +20,11 @@ Codificar um sistema seguindo os melhores padrões que puder, organização, com
 ✅ **Controle de quem pode excluir** (Apenas usuários ADMIN)
 
 ## Tecnologias utilizadas
-Foram utilizadas as seguintes tecnologias para o desenvolvimento do Frontend:
+Foram utilizadas as seguintes tecnologias para o desenvolvimento da aplicação:
 
-**Frontend**: Next, TailwindCSS, ShadCN, Zodm Axios, e JWT-Decode.
+**Frontend**: Next, TailwindCSS, ShadCN, Zod, Axios, e JWT-Decode.
 
-**Backend**: Express, Cors, Helmel, Zod, Bcrypt, JsonWebToken e Prisma.
+**Backend**: Express, Cors, Helmet, Zod, Bcrypt, JsonWebToken e Prisma.
 
 **Banco de Dados**: MySQL.
 
@@ -80,9 +80,9 @@ npx prisma migrate dev
 ##  Iniciado o Servidor
 Utiliza o comando abaixo para iniciar o servidor:
 ```
-npm run dev | yarn run dev
+npm run server | yarn run server
 ```
-Caso irá ser mostrando uma mensagem avisando que o servidor foi iniciado. 
+Caso tudo ok, irá ser mostrando uma mensagem avisando que o servidor foi iniciado. 
 É possível tambem testar uma rota teste disponível:
 ```
 localhost:PORT/ping
