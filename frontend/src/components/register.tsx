@@ -44,7 +44,7 @@ export const Register = ({ name, setName, email, setEmail, password, setPassword
       const logged = await signUp(data)
 
       if (logged) {
-         alert('Usuário realizado com sucesso!')
+         alert('Usuário cadastrado com sucesso!')
 
          setName('')
          setEmail('')

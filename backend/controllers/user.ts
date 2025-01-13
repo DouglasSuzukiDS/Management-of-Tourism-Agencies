@@ -11,9 +11,9 @@ export const getUsers: RequestHandler = async (req, res) => {
 }
 
 export const getUser: RequestHandler = async (req, res) => {
-   const { login } = req.body
+   const { email } = req.body
 
-   const user = await userService.getUser(login)
+   const user = await userService.getUser(email)
 
    res.status(200).json({ user })
 }
@@ -25,13 +25,14 @@ export const getUserById: RequestHandler = async (req, res) => {
       const user = await userService.getUserById(parseInt(id))
 
       if (!user) {
-         res.status(404).json({ error: 'Usuário não encontrado.' })
+         res.status(404).json({ message: 'Usuário não encontrado.' })
+         return
       }
 
       res.status(200).json({ message: 'Usuário localizado.', user })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Usuário não encontrado' })
+      res.status(404).json({ message: 'Usuário não encontrado' })
    }
 }
 
@@ -39,7 +40,7 @@ export const createUser: RequestHandler = async (req, res) => {
    const safeData = signUpSchema.safeParse(req.body)
    // Verifica o dados recebidos
    if (!safeData.success) {
-      res.status(400).json({ error: safeData.error.flatten().fieldErrors })
+      res.status(400).json({ message: safeData.error.flatten().fieldErrors })
       return
    }
 
@@ -48,13 +49,13 @@ export const createUser: RequestHandler = async (req, res) => {
       const user = await userService.createUser(safeData.data)
 
       // Verifica se o user foi criado
-      if (!user) res.status(400).json({ error: 'Não foi possível criar o usuário, tente mais tarde.' })
+      if (!user) res.status(400).json({ message: 'Não foi possível criar o usuário, tente mais tarde.' })
 
       // Retorna os dados do usuário e o token de acesso
       res.status(201).json({ message: 'Usuário criado.', user })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Login indisponível no momento.' })
+      res.status(404).json({ message: 'Login indisponível no momento.' })
       return
    }
 }
@@ -65,7 +66,7 @@ export const updateUser: RequestHandler = async (req, res) => {
    const safeData = userSchema.safeParse(req.body)
    // Verifica o dados recebidos
    if (!safeData.success) {
-      res.status(400).json({ error: safeData.error.flatten().fieldErrors })
+      res.status(400).json({ message: safeData.error.flatten().fieldErrors })
       return
    }
 
@@ -74,13 +75,13 @@ export const updateUser: RequestHandler = async (req, res) => {
       const user = await userService.updateUser(parseInt(id), safeData.data)
 
       // Verifica se o user foi editado
-      if (!user) res.status(400).json({ error: 'Não foi possível fazer a edição do usuário. Por favor, tente mais tarde.' })
+      if (!user) res.status(400).json({ message: 'Não foi possível fazer a edição do usuário. Por favor, tente mais tarde.' })
 
       // Retorna os dados do usuário e o token de acesso
       res.status(200).json({ message: 'Dados de usuários ediatados.', user })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Não foi possível fazer a edição do usuário. Por favor, tente mais tarde.' })
+      res.status(404).json({ message: 'Não foi possível fazer a edição do usuário. Por favor, tente mais tarde.' })
       return
    }
 }
@@ -99,7 +100,7 @@ export const deleteUser: RequestHandler = async (req, res) => {
          token,
          process.env.JWT_SECRET as string,
          async (error, decoded: any) => {
-            if (error) return res.status(401).json({ error: 'Acesso negado.' })
+            if (error) return res.status(401).json({ message: 'Acesso negado.' })
 
             role = decoded.role
          }
@@ -112,11 +113,11 @@ export const deleteUser: RequestHandler = async (req, res) => {
             res.status(200).json({ message: 'Usuário removido do sistema.', user })
          } catch (err) {
             console.error(err)
-            res.status(404).json({ error: 'Usuário não encontrado.' })
+            res.status(404).json({ message: 'Usuário não encontrado.' })
          }
       } else {
          // Se ROLE não por admin error um erro.
-         res.status(404).json({ error: 'Você não pode executar essa ação.' })
+         res.status(404).json({ message: 'Você não pode executar essa ação.' })
       }
    }
 }

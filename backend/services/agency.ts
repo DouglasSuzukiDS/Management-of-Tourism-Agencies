@@ -37,6 +37,7 @@ export const deleteAgency = async (id: number) => {
    const agencyExists = await prisma.agency.findFirst({ where: { id } })
 
    if (!agencyExists) throw new Error("Agência não encontrada.")
+
    const deleteAgency = await prisma.agency.delete({
       where: { id },
    })

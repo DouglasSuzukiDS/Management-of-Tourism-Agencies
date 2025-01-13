@@ -73,7 +73,8 @@ export const AuthProvider = ({ children }: Props) => {
             const decodedToken = jwtDecode<User>(token)
 
             setUser(decodedToken)
-
+            // alert(JSON.stringify(decodedToken))
+            console.log(decodedToken)
             return true
          } catch (err) {
             console.log(err)

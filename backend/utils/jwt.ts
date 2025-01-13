@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
-import { getUser } from '../services/user'
 import { SigninData } from '../types/signIn'
+import { getUser } from '../services/user'
 
 export const createJWT = (data: SigninData) => {
    return jwt.sign({ ...data }, process.env.JWT_SECRET as string)
@@ -22,7 +22,7 @@ export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
       async (error, decoded: any) => {
          if (error) return res.status(401).json({ error: 'Acesso negado' })
 
-         const user = await getUser(decoded.login)
+         const user = await getUser(decoded.email)
 
          if (!user) return res.status(401).json({ error: 'Acesso negado' })
 

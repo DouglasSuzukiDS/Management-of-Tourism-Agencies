@@ -14,7 +14,7 @@ mainRouter.get('/token', verifyJWT, pingController.token)
 
 // User Routes
 mainRouter.get('/users', verifyJWT, userController.getUsers)
-mainRouter.get('/user/:id', verifyJWT, userController.getUserById)
+mainRouter.get('/user/:id', verifyJWT, userController.getUser)
 mainRouter.post('/user', verifyJWT, userController.createUser)
 mainRouter.put('/user/:id', verifyJWT, userController.updateUser)
 mainRouter.delete('/user/:id', verifyJWT, userController.deleteUser)

@@ -5,8 +5,7 @@ export const About = () => {
    return (
       <div className="hidden h-screen md:w-1/2 md:flex flex-col justify-center items-center gap-10 px-10 border">
          <div className="flex flex-col justify-center items-center">
-            <h1 className="text-3xl font-bold text-gray-400">Desenvolvido com 💗</h1>
-            <h1 className="text-3xl text-gray-400 font-bold">por Douglas</h1>
+            <h1 className="text-3xl font-bold text-gray-400">Desenvolvido com 💗 por Douglas</h1>
          </div>
 
          <p className="text-center text-gray-400 text-lg">
@@ -21,13 +20,15 @@ export const About = () => {
             <Button variant={'ghost'} className="border">
                <Link
                   href={'https://www.linkedin.com/in/douglas-suzuki/'}
-                  className="text-center text-gray-400 font-bold">Linkedin</Link>
+                  target="_blank"
+                  className="text-center text-gray-400 hover:text-black font-bold">Linkedin</Link>
             </Button>
 
             <Button variant={'ghost'} className="border">
                <Link
                   href={'https://github.com/DouglasSuzukiDS'}
-                  className="text-center text-gray-400 font-bold">GitHub</Link>
+                  target="_blank"
+                  className="text-center text-gray-400 hover:text-black font-bold">GitHub</Link>
             </Button>
          </div>
       </div>

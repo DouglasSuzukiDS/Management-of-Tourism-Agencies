@@ -41,8 +41,8 @@ export function SignUpForm({ user, setUsers }: Props) {
 
       await signUp({ name, email, password, role })
          .then(async (res) => {
-            alert('Colaborador cadastrado.')
-            clearInputs()
+            //alert('Colaborador cadastrado.')
+            // clearInputs()
 
             if (res) {
                await api.get('/users')
@@ -50,6 +50,9 @@ export function SignUpForm({ user, setUsers }: Props) {
                      console.log(res.data)
 
                      setUsers(res.data.users)
+
+                     alert('Colaborador cadastrado.')
+                     clearInputs()
                   })
                   .catch(err => {
                      console.error(err)
@@ -79,8 +82,6 @@ export function SignUpForm({ user, setUsers }: Props) {
          errors.name && errorsList.push(`Campo nome: ${errors.name}\n\n`)
          errors.email && errorsList.push(`Campo email: ${errors.email}\n\n`)
          errors.password && errorsList.push(`Campo senha: ${errors.password}\n\n`)
-
-
 
          alert(errorsList.join('').replace(',', ''))
       } else {
@@ -129,7 +130,8 @@ export function SignUpForm({ user, setUsers }: Props) {
       } else {
          setName(user.name)
          setEmail(user.email)
-         setPassword(user.password)
+         // setPassword(user.password)
+         setPassword('')
          setRole('analyst')
 
          setSavePassword(user.password)

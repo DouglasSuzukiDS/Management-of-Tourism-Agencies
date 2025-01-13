@@ -56,6 +56,7 @@ export const signIn: RequestHandler = async (req, res) => {
 
    if (verifyPassword) {
       const userInfos: SigninData = {
+         id: user.id,
          name: user.name,
          email: user.email,
          role: user.role

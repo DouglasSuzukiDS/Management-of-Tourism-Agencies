@@ -10,7 +10,7 @@ export const getAgenciesList: RequestHandler = async (req, res) => {
       res.status(200).json({ agencies: agenciesList })
    } catch (err) {
       console.error(err)
-      res.status(500).json({ error: 'Ocorreu um erro ao buscar as agências.' })
+      res.status(500).json({ message: 'Ocorreu um erro ao buscar as agências.' })
    }
 }
 
@@ -21,7 +21,7 @@ export const getAgency: RequestHandler = async (req, res) => {
       const agencyById = await agencyService.getAgencyById(parseInt(id))
 
       if (!agencyById) {
-         res.status(404).json({ error: 'Agência não encontrada.' })
+         res.status(404).json({ message: 'Agência não encontrada.' })
 
          return
       }
@@ -29,7 +29,7 @@ export const getAgency: RequestHandler = async (req, res) => {
       res.status(200).json({ message: 'Agência localizada.', agency: agencyById })
    } catch (err) {
       console.error(err)
-      res.status(500).json({ error: 'Ocorreu um erro ao buscar a agência.' })
+      res.status(500).json({ message: 'Ocorreu um erro ao buscar a agência.' })
       return
    }
 }
@@ -39,7 +39,7 @@ export const createAgency: RequestHandler = async (req, res) => {
 
    // Verifica os dados recebidos
    if (!safeData.success) {
-      res.status(400).json({ error: safeData.error.flatten().fieldErrors })
+      res.status(400).json({ message: safeData.error.flatten().fieldErrors })
       return
    }
 
@@ -47,13 +47,13 @@ export const createAgency: RequestHandler = async (req, res) => {
       const agency = await agencyService.createAgency(safeData.data)
 
       // Verifica se a agência foi criada
-      if (!agency) res.status(400).json({ error: 'Não foi possível criar a agência. Por favor,tente mais tarde.' })
+      if (!agency) res.status(400).json({ message: 'Não foi possível criar a agência. Por favor,tente mais tarde.' })
 
       // Se a agencia for criata ele retorna os dados
       res.status(201).json({ message: 'Agência criada.', })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Não foi possível criar a agência. Por favor,tente mais tarde.' })
+      res.status(404).json({ message: 'Não foi possível criar a agência. Por favor,tente mais tarde.' })
       return
    }
 }
@@ -64,7 +64,7 @@ export const updateAgencyData: RequestHandler = async (req, res) => {
 
    // Verifica os dados recebidos
    if (!safeData.success) {
-      res.status(400).json({ error: safeData.error.flatten().fieldErrors })
+      res.status(400).json({ message: safeData.error.flatten().fieldErrors })
       return
    }
 
@@ -72,13 +72,13 @@ export const updateAgencyData: RequestHandler = async (req, res) => {
       const agency = await agencyService.updateAgency(parseInt(id), safeData.data)
 
       // Verifica se a agência foi editada
-      if (!agency) res.status(400).json({ error: 'Não foi possível editar as informações da agência. Por favor,tente mais tarde.' })
+      if (!agency) res.status(400).json({ message: 'Não foi possível editar as informações da agência. Por favor,tente mais tarde.' })
 
       // Se a agência for editada ele retorna os dados
       res.status(200).json({ message: 'Dados da agência editadas.', agency })
    } catch (err) {
       console.error(err)
-      res.status(404).json({ error: 'Não foi possível editar as informações da agência. Por favor,tente mais tarde.' })
+      res.status(404).json({ message: 'Não foi possível editar as informações da agência. Por favor,tente mais tarde.' })
       return
    }
 }
@@ -97,7 +97,7 @@ export const deleteAgency: RequestHandler = async (req, res) => {
          token,
          process.env.JWT_SECRET as string,
          async (error, decoded: any) => {
-            if (error) return res.status(401).json({ error: 'Acesso negado' })
+            if (error) return res.status(401).json({ message: 'Acesso negado' })
 
             role = decoded.role
          }
@@ -112,10 +112,10 @@ export const deleteAgency: RequestHandler = async (req, res) => {
             console.error(err)
 
             // Se ROLE não por admin error um erro.
-            res.status(404).json({ error: 'Não foi possível remover a agência do sistema.' })
+            res.status(404).json({ message: 'Não foi possível remover a agência do sistema.' })
          }
       } else {
-         res.status(404).json({ error: 'Não foi possível remover a agência do sistema.' })
+         res.status(404).json({ message: 'Você não pode executar essa ação.' })
       }
    }
 }

@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { AuthProvider, useAuth } from "../../contexts/auth"
 import { About } from "./about"
 import { Form } from "./form"
-import { useRouter } from "next/navigation"
+import { redirect, useRouter } from "next/navigation"
 
 export const InitialPage = () => {
    const { loadStorage } = useAuth()
@@ -14,7 +14,7 @@ export const InitialPage = () => {
    const checkIfLogged = async () => {
       const logged = await loadStorage()
 
-      logged && router.push('/agencies')
+      logged && redirect('/agencies') //router.push('/agencies')
    }
 
    useEffect(() => {
