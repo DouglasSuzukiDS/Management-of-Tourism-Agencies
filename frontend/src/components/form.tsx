@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/auth"
 import { Login } from "./login"
 import { Register } from "./register"
 import Link from "next/link"
+import { Footer } from "./footer"
 
 export const Form = () => {
    const [email, setEmail] = useState('')
@@ -40,12 +41,7 @@ export const Form = () => {
                setNewAccount={setNewAccount} />
          }
 
-         <footer className="md:hidden flex">
-            <h1 className="text-md font-bold text-gray-400">Desenvolvido com 💗 por <Link
-               target="_blank"
-               className="underline"
-               href={'https://www.linkedin.com/in/douglas-suzuki/'}>Douglas</Link></h1>
-         </footer>
+         <Footer className="md:hidden flex" />
       </div>
 
 

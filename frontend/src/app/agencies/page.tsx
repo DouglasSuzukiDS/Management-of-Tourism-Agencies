@@ -13,6 +13,7 @@ import { TooltipCustom } from "@/components/tooltip"
 import { AgencyForm } from "@/components/agencyForm"
 import { useAgency } from "@/hooks/useAgency"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
@@ -156,6 +157,8 @@ export default function Page() {
             </div>
 
          </div>
+
+         <Footer className="flex justify-center py-5 border-t gap-y-4" />
       </div >
    )
 }

@@ -15,6 +15,7 @@ import { About } from "@/components/about"
 import Link from "next/link"
 import Image from "next/image"
 import { url } from "inspector"
+import { Footer } from "@/components/footer"
 
 export default function Page() {
    const { signOut, loadStorage } = useAuth()
@@ -75,6 +76,8 @@ export default function Page() {
                </div>
             </div>
          </div>
+
+         <Footer className="flex justify-center py-5 border-t gap-y-4" />
       </div >
    )
 }

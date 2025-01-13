@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation"
 import { SignUpForm } from "@/components/signUpForm"
 import { UserTable } from "@/components/userTableList"
 import { Header } from "@/components/header"
+import { Footer } from "@/components/footer"
 
 
 export default function Page() {
@@ -66,10 +67,11 @@ export default function Page() {
                   users={users}
                   setUsers={setUsers}
                />
-
             </div>
 
          </div>
-      </div >
+
+         <Footer className="flex justify-center py-5 border-t gap-y-4" />
+      </div>
    )
 }
