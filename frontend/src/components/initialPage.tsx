@@ -1,33 +1,30 @@
 'use client'
 
-import { InitialPage } from "@/components/initialPage"
-import { AuthProvider, useAuth } from "../../contexts/auth"
-import { useRouter } from "next/navigation"
 import { useEffect } from "react"
+import { AuthProvider, useAuth } from "../../contexts/auth"
+import { About } from "./about"
+import { Form } from "./form"
+import { useRouter } from "next/navigation"
 
-export const App = () => {
+export const InitialPage = () => {
    const { loadStorage } = useAuth()
+
    const router = useRouter()
 
-   const checkIfBeLogged = async () => {
+   const checkIfLogged = async () => {
       const logged = await loadStorage()
 
-      if (logged) {
-         router.push('/agencies')
-      } else {
-         router.push('/')
-      }
+      logged && router.push('/agencies')
    }
 
    useEffect(() => {
-      checkIfBeLogged()
+      checkIfLogged()
    }, [])
 
    return (
       <div className="h-screen w-screen flex justify-center items-center">
-         <AuthProvider>
-            <InitialPage />
-         </AuthProvider>
+         <About />
+         <Form />
       </div>
    )
 }

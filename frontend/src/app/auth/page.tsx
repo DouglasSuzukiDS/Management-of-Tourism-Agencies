@@ -11,14 +11,16 @@ export default function Page() {
 
    const router = useRouter()
 
-   const checkIfLogged = async () => {
+   const checkIfBeLogged = async () => {
       const logged = await loadStorage()
 
-      logged && alert('NAO')
+      if (!logged) {
+         router.push('/')
+      }
    }
 
    useEffect(() => {
-      checkIfLogged()
+      checkIfBeLogged()
    }, [])
 
    return (

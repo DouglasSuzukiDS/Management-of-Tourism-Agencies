@@ -67,7 +67,7 @@ export default function Page() {
       const logged = await loadStorage()
 
       if (logged) {
-         getAgencies()
+         await getAgencies()
       } else {
          router.push('/')
       }

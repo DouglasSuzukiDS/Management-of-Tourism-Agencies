@@ -17,7 +17,7 @@ export default function Page({ params }: Props) {
 
    const [agency, setAgency] = useState<Agency>()
 
-   const { user } = useAuth()
+   const { user, loadStorage } = useAuth()
 
    // const { agencies, setAgencies, getAgencies, getAgencyById, deleteAgency, agency } = useAgency()
 
@@ -45,8 +45,18 @@ export default function Page({ params }: Props) {
 
    }
 
+   const checkIfBeLogged = async () => {
+      const logged = await loadStorage()
+
+      if (logged) {
+         getAgency()
+      } else {
+         router.push('/')
+      }
+   }
+
    useEffect(() => {
-      getAgency()
+      checkIfBeLogged()
    }, [])
 
    return (

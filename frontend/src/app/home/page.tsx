@@ -17,14 +17,16 @@ export default function Page() {
       router.push('/')
    }
 
-   const checkIfLogged = async () => {
+   const checkIfBeLogged = async () => {
       const logged = await loadStorage()
 
-      if (!logged) router.replace('/')
+      if (!logged) {
+         router.push('/')
+      }
    }
 
    useEffect(() => {
-      checkIfLogged()
+      checkIfBeLogged()
    }, [])
 
    return (

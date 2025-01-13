@@ -32,7 +32,7 @@ export default function Page() {
       const logged = await loadStorage()
 
       if (logged) {
-         getUsers()
+         await getUsers()
       } else {
          router.push('/')
       }
