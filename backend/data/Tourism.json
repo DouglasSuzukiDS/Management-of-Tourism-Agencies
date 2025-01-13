@@ -1,0 +1,605 @@
+{
+	"info": {
+		"_postman_id": "2e111f7f-743b-4f1e-88df-4d3ec386f5f3",
+		"name": "Tourism",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37130063"
+	},
+	"item": [
+		{
+			"name": "Ping",
+			"item": [
+				{
+					"name": "Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/ping",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Private Ping",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmljayIsImxvZ2luIjoibmljayIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNjUzNzE3Mn0.DW503ihl6uFKrHsUAeyqB-rzXQVViz13yFQen4Uxr_E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/private-ping",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"private-ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibmljayIsImxvZ2luIjoibmljayIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTczNjUzNjkzN30.tRhS2-17tMmosikfI6JOANt6LtVkEIMTOzCN4xWobi8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/token",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2Mzg3NzV9.giXzIlHwaELdysmsGiPkj-VPQCzxfkEsSv6Jr8FwBbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2Mzg3NzV9.giXzIlHwaELdysmsGiPkj-VPQCzxfkEsSv6Jr8FwBbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User to Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2Mzg3NzV9.giXzIlHwaELdysmsGiPkj-VPQCzxfkEsSv6Jr8FwBbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "000",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2Mzg3NzV9.giXzIlHwaELdysmsGiPkj-VPQCzxfkEsSv6Jr8FwBbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tonho\",\r\n    \"email\": \"tonho@email.com\",\r\n    \"password\": \"nonho\",\r\n    \"role\": \"analyst\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2Mzg3NzV9.giXzIlHwaELdysmsGiPkj-VPQCzxfkEsSv6Jr8FwBbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"John Doe\",\r\n    \"email\": \"john@email.com\",\r\n    \"password\": \"john\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/5",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by Email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2Mzg3NzV9.giXzIlHwaELdysmsGiPkj-VPQCzxfkEsSv6Jr8FwBbo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"nick@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/user/find-by-email",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								"find-by-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Role Analyst",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFtZXMiLCJlbWFpbCI6ImphbWVzQGVtYWlsLmNvbSIsInJvbGUiOiJhbmFseXN0IiwiaWF0IjoxNzM2NjQzMzY2fQ.Tiw4Ko_Tp7pT8F6Dn85dtDv2HGB6SOaJaBZ1mKlcFe4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/user/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"user",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "5",
+									"type": "string"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nick\",\r\n    \"email\": \"nick@email.com\",\r\n    \"password\": \"nick\",\r\n    \"role\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"blake@email.com\",\r\n    \"password\": \"blake\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agency",
+			"item": [
+				{
+					"name": "Agencies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2NDIzNDl9.JNYWo00aOdcKPpkPiVm7k4hwOMsoW5E76QfE3OXy3oU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/agency",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Agency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2NDIzNDl9.JNYWo00aOdcKPpkPiVm7k4hwOMsoW5E76QfE3OXy3oU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"name\": \"Lucas e Luiza Tecnologia LTDA\",\r\n      \"fantasyName\": \"Tecnologia Lucas e Luiza\",\r\n      \"cnpj\": \"65432109000165\",\r\n      \"registerState\": \"654321098765\",\r\n      \"status\": false,\r\n      \"description\": \"Desenvolvimento de software e soluções tecnológicas.\",\r\n      \"foundation\": \"30/09/2020\",\r\n      \"email\": \"tecnologia@lucaseluziatecnologia.com.br\",\r\n      \"contact\": \"41987654321\",\r\n      \"address\": \"Avenida Paulista, 202\",\r\n      \"uf\": \"SP\"\r\n   }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/agency",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Agency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2NDIzNDl9.JNYWo00aOdcKPpkPiVm7k4hwOMsoW5E76QfE3OXy3oU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Isabella e Andrea Lavanderia ME - EDIT\",\r\n    \"fantasyName\": \"Lavanderia Isabella - EDIT\",\r\n    \"cnpj\": \"36153087000184 - EDIT\",\r\n    \"registerState\": \"206907612635 - EDIT\",\r\n    \"status\": true,\r\n    \"description\": \"Lavanderia especializada em serviços de lavagem e passadoria. - EDIT\",\r\n    \"foundation\": \"18/07/2020 - EDIT\",\r\n    \"email\": \"posvenda@isabellaeandrealavanderiame.com.br\",\r\n    \"contact\": \"19986047306 - EDIT\",\r\n    \"address\": \"Rua das Flores, 123 - EDIT\",\r\n    \"uf\": \"SP\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/agency/2",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Agency",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2NDIzNDl9.JNYWo00aOdcKPpkPiVm7k4hwOMsoW5E76QfE3OXy3oU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/agency/3",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Role Analyst",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSmFtZXMiLCJlbWFpbCI6ImphbWVzQGVtYWlsLmNvbSIsInJvbGUiOiJhbmFseXN0IiwiaWF0IjoxNzM2NjQzMzY2fQ.Tiw4Ko_Tp7pT8F6Dn85dtDv2HGB6SOaJaBZ1mKlcFe4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/agency/9",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agency by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTmljayIsImVtYWlsIjoibmlja0BlbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzY2NDAxOTF9.TuO1L1hwKH6vLAbfE4OitW6-cxmEi7BY6cZ0ctJxtOY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/agency/9",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
