@@ -39,7 +39,7 @@ export const UserTable = ({ users, setUsers }: Props) => {
                <td className="w-1/4 px-4 py-2">Colaborador</td>
                <td className="w-1/4 px-4 py-2">Email</td>
                <td className="w-1/4 px-4 py-2">Cargo</td>
-               <td className="w-1/4 px-4 py-2">Actions</td>
+               <td className="w-1/4 px-4 py-2">Ações</td>
             </tr>
          </thead>
 

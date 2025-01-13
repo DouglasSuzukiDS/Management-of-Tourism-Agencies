@@ -10,10 +10,13 @@ import { SignUpForm } from "@/components/signUpForm"
 import { UserTable } from "@/components/userTableList"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Input } from "@/components/ui/input"
 
 
 export default function Page() {
    const [users, setUsers] = useState<User[]>([])
+
+   const [cloneUsers, setCloneUsers] = useState<User[]>([])
 
    const { user, loadStorage } = useAuth()
 
@@ -23,7 +26,9 @@ export default function Page() {
       await api.get('/users')
          .then(res => {
             const usersList: User[] = res.data.users
-            setUsers(usersList.filter(u => u.id !== user?.id))
+            // setUsers(usersList.filter(u => u.id !== user?.id))
+            setUsers(usersList)
+            setCloneUsers(usersList)
 
             console.log(res.data.users)
          })
@@ -40,6 +45,20 @@ export default function Page() {
       }
    }
 
+   const searchUser = (search: string) => {
+      const filterUsers = users.filter(u =>
+         u.name.toLowerCase().includes(search.toLowerCase()) ||
+         u.role.toString().includes(search.toLowerCase())
+      )
+
+      if (filterUsers.length >= 1) {
+         setCloneUsers(filterUsers)
+      } else {
+         setCloneUsers(users)
+      }
+
+   }
+
    useEffect(() => {
       checkIfBeLogged()
    }, [])
@@ -54,17 +73,24 @@ export default function Page() {
             {/* Users */}
             <div className="h-full flex flex-col warp p-10 bg-customGray-light rounded border overflow-y-auto shadow-md">
                {/* Title & Button New User */}
-               <div className="flex justify-between">
-                  <h1 className="text-3xl text-gray-200 mb-10">Colaboradores</h1>
+               <div className="flex justify-between flex-wrap mb-10">
+                  <h1 className="text-3xl text-gray-200 mr-5">Colaboradores</h1>
 
-                  <SignUpForm
-                     user={null}
-                     setUsers={setUsers} />
+                  <div className="flex flex-1 items-center gap-5">
+                     <Input
+                        className="bg-neutral-400 border-none ring-0 focus:ring-0 focus:border-none focus:outline-none font-bold"
+                        onChange={e => searchUser(e.target.value)}
+                        placeholder="Pesquisar" />
+
+                     <SignUpForm
+                        user={null}
+                        setUsers={setUsers} />
+                  </div>
                </div>
 
                {/* Users List */}
                <UserTable
-                  users={users}
+                  users={cloneUsers}
                   setUsers={setUsers}
                />
             </div>

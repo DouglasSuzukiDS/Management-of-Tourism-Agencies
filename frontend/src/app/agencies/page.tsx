@@ -14,10 +14,14 @@ import { AgencyForm } from "@/components/agencyForm"
 import { useAgency } from "@/hooks/useAgency"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Input } from "@/components/ui/input"
 export default function Page() {
    const [agencies, setAgencies] = useState<Agency[]>([])
    const [agency, setAgency] = useState<Agency>()
    const [newAgency, setNewAgency] = useState(false)
+
+   const [cloneAg, setCloneAg] = useState<Agency[]>([])
+   const [search, setSearch] = useState('')
 
    const { user, loadStorage } = useAuth()
    // const { agencies, setAgencies, getAgencies, deleteAgency } = useAgency()
@@ -28,6 +32,7 @@ export default function Page() {
       await api.get('/agency')
          .then(res => {
             setAgencies(res.data.agencies)
+            setCloneAg(res.data.agencies)
 
             console.log(res.data)
          })
@@ -75,6 +80,20 @@ export default function Page() {
       }
    }
 
+   const searchAg = (search: string) => {
+      const filterAgencies = agencies.filter(ag =>
+         ag.name.toLowerCase().includes(search.toLowerCase()) ||
+         ag.foundation.toString().includes(search.toLowerCase())
+      )
+
+      if (filterAgencies.length >= 1) {
+         setCloneAg(filterAgencies)
+      } else {
+         setCloneAg(agencies)
+      }
+
+   }
+
    useEffect(() => {
       checkIfBeLogged()
    }, [])
@@ -86,21 +105,27 @@ export default function Page() {
          <Header />
 
          <div className="h-full w-auto flex flex-1 justify-center items-center p-10">
-
             {/* Agencies */}
             <div className="md:w-[70%] h-full flex flex-col warp p-10 bg-customGray-light rounded border overflow-y-auto shadow-md">
                {/* Title & Button New Agency */}
-               <div className="flex justify-between">
-                  <h1 className="text-3xl text-gray-200 mb-10">Agências</h1>
+               <div className="flex justify-between flex-wrap mb-10">
+                  <h1 className="text-3xl text-gray-200 mr-5">Agências</h1>
 
-                  <AgencyForm
-                     agency={null}
-                     setAgencies={setAgencies} />
+                  <div className="flex flex-1 items-center gap-5">
+                     <Input
+                        className="bg-neutral-400 border-none ring-0 focus:ring-0 focus:border-none focus:outline-none font-bold"
+                        onChange={e => searchAg(e.target.value)}
+                        placeholder="Pesquisar" />
+
+                     <AgencyForm
+                        agency={null}
+                        setAgencies={setAgencies} />
+                  </div>
                </div>
 
                {/* Cards Container */}
                <div className="flex justify-center items-center flex-wrap gap-4">
-                  {agencies.map((item, index) => (
+                  {cloneAg.map((item, index) => (
                      <div key={item.id}
                         className={`max-w-[320px] flex flex-col gap-5 p-5 flex-wrap border rounded-md hover:opacity-75 ${index % 2 === 0 ? 'bg-neutral-300' : 'bg-neutral-400'}`}>
                         {/* FantasyName & CNPJ */}
