@@ -15,6 +15,8 @@ export default function Page() {
 
    const { user, loadStorage } = useAuth()
 
+   const router = useRouter()
+
    const getUsers = async () => {
       await api.get('/users')
          .then(res => {
@@ -29,7 +31,11 @@ export default function Page() {
    const checkIfBeLogged = async () => {
       const logged = await loadStorage()
 
-      logged && getUsers()
+      if (logged) {
+         getUsers()
+      } else {
+         router.push('/')
+      }
    }
 
    useEffect(() => {

@@ -1,22 +1,24 @@
-'use client'
-
-import { InitialPage } from "@/components/initialPage"
-import { AuthProvider } from "../../contexts/auth"
 import { useRouter } from "next/navigation"
 import { useEffect } from "react"
+import { useAuth } from "../../contexts/auth"
 
 export const App = () => {
    const router = useRouter()
 
-   useEffect(() => {
-      router.push('/agencies')
-   })
+   const { loadStorage } = useAuth()
 
-   return (
-      <div className="h-screen w-screen flex justify-center items-center">
-         <AuthProvider>
-            <InitialPage />
-         </AuthProvider>
-      </div>
-   )
+   const checkIfLogged = async () => {
+      const logged = await loadStorage()
+
+      if (logged) {
+         router.push('/agencies')
+      } else {
+         router.push('/auth')
+      }
+   }
+   useEffect(() => {
+      checkIfLogged()
+   }, [])
+
+   return
 }

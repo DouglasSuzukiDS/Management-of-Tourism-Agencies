@@ -66,7 +66,11 @@ export default function Page() {
    const checkIfBeLogged = async () => {
       const logged = await loadStorage()
 
-      logged && getAgencies()
+      if (logged) {
+         getAgencies()
+      } else {
+         router.push('/')
+      }
    }
 
    useEffect(() => {
