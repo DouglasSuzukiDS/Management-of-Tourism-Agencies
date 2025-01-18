@@ -19,31 +19,6 @@ export const Form = () => {
    const { signIn, signOut, user } = useAuth()
 
    return (
-      // <div className="flex flex-col flex-1 md:w-1/2 justify-center items-center h-full px-10 text-white gap-10 border">
-      //    {newAccount ?
-      //       <Register
-      //          name={name}
-      //          setName={setName}
-      //          email={email}
-      //          setEmail={setEmail}
-      //          password={password}
-      //          setPassword={setPassword}
-      //          role={role}
-      //          setRole={setRole}
-      //          setNewAccount={setNewAccount}
-      //       /> :
-
-      //       <Login
-      //          email={email}
-      //          setEmail={setEmail}
-      //          password={password}
-      //          setPassword={setPassword}
-      //          setNewAccount={setNewAccount} />
-      //    }
-
-      //    <Footer className="md:hidden flex" />
-      // </div>
-
       <div className="flex flex-col justify-between w-full">
          {newAccount ?
             <Register
@@ -67,7 +42,6 @@ export const Form = () => {
          }
 
          <Footer className="md:hidden flex justify-center text-center mt-5 pt-5 border-t gap-y-4" />
-
       </div>
    )
 }
