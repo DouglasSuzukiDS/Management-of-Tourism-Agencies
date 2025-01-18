@@ -40,10 +40,10 @@ export default function Page() {
    }, [])
 
    return (
-      <div className="w-screen h-screen flex flex-col bg-customGray-medium">
+      <div className="w-screen h-screen flex flex-col justify-between bg-customGray-medium">
          <Header />
 
-         <div className="flex flex-col flex-1 h-full items-center justify-center">
+         {/* <div className="flex flex-col flex-1 h-full items-center justify-center">
 
             <div className="flex flex-col justify-center items-center w-1/2 border p-5 rounded-md shadow-md shadow-gray-300">
 
@@ -75,9 +75,15 @@ export default function Page() {
                   </Button>
                </div>
             </div>
+         </div> */}
+
+         <div className="flex h-auto justify-center p-4 overflow-y-auto">
+            <div className="flex auto flex-col justify-center items-center max-w-lg border p-5 rounded-md shadow-md shadow-gray-300 overflow-y-auto h-auto">
+               <About />
+            </div>
          </div>
 
-         <Footer className="flex justify-center py-5 border-t gap-y-4" />
+         <Footer className="flex justify-center text-center py-5 border-t gap-y-4" />
       </div >
    )
 }

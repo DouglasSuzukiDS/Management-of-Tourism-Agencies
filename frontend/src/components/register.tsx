@@ -57,8 +57,8 @@ export const Register = ({ name, setName, email, setEmail, password, setPassword
    }
 
    return (
-      <div className="w-full flex flex-col gap-10">
-         <h1 className="text-3xl text-center">Realize o Cadastro</h1>
+      <div className="w-full flex flex-col gap-5">
+         <h1 className="text-xl md:text-3xl text-center">Realize o Cadastro</h1>
 
          <InputCustom
             label="Nome"
@@ -87,15 +87,15 @@ export const Register = ({ name, setName, email, setEmail, password, setPassword
             setRole={setRole}
          />
 
-         <div className="w-full flex gap-5">
+         <div className="w-full flex flex-row md:flex-row flex-wrap gap-5">
             <Button
                variant={"ghost"}
-               className="text-white font-bold border transition-all ease-linear duration-75 hover:text-black "
+               className="w-full text-white font-bold border transition-all ease-linear duration-75 hover:text-black md:w-fit"
                onClick={handleSubmit}>Registrar</Button>
 
             <Button
                variant={'default'}
-               className="text-black font-bold bg-white hover:bg-black hover:text-white hover:border"
+               className="w-full text-black font-bold bg-white hover:bg-black hover:text-white hover:border md:w-fit"
                onClick={goToLogin}>
                Fazer Login
             </Button>

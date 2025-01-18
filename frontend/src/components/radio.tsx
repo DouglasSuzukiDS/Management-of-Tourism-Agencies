@@ -12,7 +12,7 @@ export const RadioCustom = ({ role, setRole }: Props) => {
    }
 
    return (
-      <RadioGroup defaultValue={'analyst'} onValueChange={value => setRole(value)} className="flex justify-between">
+      <RadioGroup defaultValue={'analyst'} onValueChange={value => setRole(value)} className="flex flex-col justify-between md:flex-row">
          <div className="flex items-center space-x-4">
             <RadioGroupItem value="analyst" id="analyst" className={`text-white size-5 border-2 border-gray-300 ${role === 'analyst' && ' border-white'} `} />
             <Label htmlFor="analyst" className="font-bold">Analista</Label>

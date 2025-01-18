@@ -40,8 +40,8 @@ export const Login = ({ email, setEmail, password, setPassword, setNewAccount }:
    }
 
    return (
-      <div className="w-full flex flex-col gap-10">
-         <h1 className="text-3xl text-center">Realize o Login</h1>
+      <div className="w-full flex flex-col gap-5">
+         <h1 className="text-xl md:text-3xl text-center">Realize o Login</h1>
 
          <InputCustom
             label="Email"
@@ -58,15 +58,15 @@ export const Login = ({ email, setEmail, password, setPassword, setNewAccount }:
             type="password"
          />
 
-         <div className="w-full flex flex-wrap gap-5">
+         <div className="w-full flex flex-row md:flex-row flex-wrap gap-5">
             <Button
                variant={"default"}
-               className="text-black font-bold  bg-white hover:bg-black hover:text-white hover:border"
+               className="w-full text-black font-bold  bg-white hover:bg-black hover:text-white hover:border md:w-fit"
                onClick={handleSubmit}>Logar</Button>
 
             <Button
                variant={'ghost'}
-               className="text-white font-bold  border hover:text-black transition-all ease-linear duration-75"
+               className="w-full text-white font-bold border hover:text-black transition-all ease-linear duration-75 md:w-fit"
                onClick={goToRegister}>
                Criar conta
             </Button>

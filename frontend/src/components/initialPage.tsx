@@ -23,8 +23,17 @@ export const InitialPage = () => {
 
    return (
       <div className="h-screen w-screen flex justify-center items-center">
-         <About />
-         <Form />
+         <div className="hidden h-screen md:w-1/2 md:flex flex-col justify-center items-center gap-10 px-10 overflow-y-auto border">
+            <div className="m-5 p-5 border rounded-md shadow-md shadow-gray-300 overflow-y-auto">
+               <About />
+            </div>
+         </div>
+
+         <div className="flex flex-col flex-1 justify-center items-center h-full px-5 md:px-10 text-white gap-10 overflow-y-auto">
+            <div className="w-full m-5 p-5 border rounded-md shadow-md shadow-gray-300 overflow-y-auto">
+               <Form />
+            </div>
+         </div>
       </div>
    )
 }
